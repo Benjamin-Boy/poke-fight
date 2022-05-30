@@ -1,0 +1,122 @@
+<%- include('./partials/header') %> 
+
+  <nav>
+    <ul>
+      <li><a href="/deck"><h4>Deck</h4></a></li>
+    </ul>
+  </nav>
+  </header>
+    <article class="poke__name__title">
+      <h1><%= card.nom %></h1>
+    </article>
+    <article class="poke__details">
+
+      <section class="poke__img">
+        <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
+      </section>
+
+      <section class="poke__infos">
+
+        <section class="poke__to__deck">
+          <a href="/deck/add/<%= card.id %>"><i class="fa-solid fa-plus"></i></a>
+        </section>
+
+        <section class="poke__infos__name__numero">
+          <h3 class="poke__numero">#<%= card.numero %></h3>
+          <h3 class="poke__name"><%= card.nom %></h3>
+        </section>
+
+        <section class="poke__types">
+
+          <% for(const type of card.type){ %>
+            <div class="poke__type__container" color="#<%= type.color %>"> 
+              <img src="/icons/<%= type.name.toLowerCase() %>.svg" alt="<%= type.name.toLowerCase() %>">
+              <div class="tooltip">
+                <h3><%= type.name %></h3>
+              </div>
+            </div>
+          <% } %>
+
+        </section>
+
+        <section class="poke__stats__title">
+          <h2>Statistiques</h2>
+        </section>
+
+        <section class="poke__stats__container">
+
+          <table class="poke__stats__table">
+            <tr class="stat">
+              <td><i class="fa-solid fa-heart"></i></td>
+              <td>PV</td>
+              <td><%= card.pv %></td>
+              <td>
+                <div class="stat__slider__container">
+                  <div class="stat__slider"><%= Math.round((card.pv/255)*100) %></div>
+                </div>
+              </td>
+            </tr>
+            <tr class="stat">
+              <td><i class="fa-solid fa-bolt"></i></td>
+              <td>Attaque</td>
+              <td class="stat__number"><%= card.attaque %></td>
+              <td>
+                <div class="stat__slider__container">
+                  <div class="stat__slider"><%= Math.round((card.attaque/255)*100) %></div>
+                </div>
+              </td>
+            </tr>
+            <tr class="stat">
+              <td><i class="fa-solid fa-shield"></i></td>
+              <td>Défense</td>
+              <td><%= card.defense %></td>
+              <td>
+                <div class="stat__slider__container">
+                  <div class="stat__slider"><%= Math.round((card.defense/255)*100) %></div>
+                </div>
+              </td>
+            </tr>
+            <tr class="stat">
+              <td><i class="fa-solid fa-cloud-bolt"></td>
+              <td>Attaqué Spé.</td>
+              <td><%= card.attaque_spe %></td>
+              <td>
+                <div class="stat__slider__container">
+                  <div class="stat__slider"><%= Math.round((card.attaque_spe/255)*100) %></div>
+                </div>
+              </td>
+            </tr>
+            <tr class="stat">
+              <td><i class="fa-solid fa-shield-halved"></td>
+              <td>Défense Spé.</td>
+              <td><%= card.defense_spe %></td>
+              <td class="slider__td">
+                <div class="stat__slider__container">
+                  <div class="stat__slider"><%= Math.round((card.defense_spe/255)*100) %></div>
+                </div>
+              </td>
+            </tr>
+            <tr class="stat">
+              <td><i class="fa-solid fa-angles-right"></td>
+              <td>Vitesse</td>
+              <td><%= card.vitesse %></td>
+              <td>
+                <div class="stat__slider__container">
+                  <div class="stat__slider"><%= Math.round((card.vitesse/255)*100) %></div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        
+      </section>
+     
+      </section>
+
+    </article>
+    <article class="back__to__main">
+      <a href="/"><i class="fa-solid fa-rotate-left"></i></a> 
+    </article>
+
+    <script src="/js/card.js"></script>
+
+<%- include('./partials/footer') %> 

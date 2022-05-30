@@ -1,0 +1,90 @@
+<%- include('./partials/header') %> 
+  <section id="filter" filter="<%= filter %>">
+    <div class="filter__top">
+      <input type="text" name="pokeName" id="pokeName" placeholder="Enter a Pokemon name">
+      <a href="#" class="remove__filter"><h4>Effacer les filtres</h4></a>
+    </div>
+  </section>
+    <nav>
+      <ul>
+        <!-- <li class="list__toggle"><a href="#"><h4>Liste</h4></a></li> -->
+        <li class="show__filters"><h4>Filtres</h4></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="filter" filter="<%= filter %>">
+      <div class="filter__bottom">
+        <% for(const type of types){ %>
+          <form action="/type" method="get">
+            <input type="submit" name="type" value="<%= type.name %>" class="pokeType" color="#<%= type.color %>">
+          </form>
+        <% } %>
+      </div>
+    </section>
+
+    <div class="cards__container container__thumbnails">
+      
+      <% cards.forEach((card) => { %>
+        <article class="card card__deck">
+          <a href="/card/<%= card.id %>">
+            <h3 class="poke__name"><%= card.nom %></h3>
+            <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
+            <section class="deck__stats__left">
+
+              <section class="deck__types">
+
+                <% for(const type of card.type){ %>
+                  <div class="deck__type__container" color="#<%= type.color %>"> 
+                    <img src="/icons/<%= type.name.toLowerCase() %>.svg" alt="<%= type.name.toLowerCase() %>">
+                    <div class="deck__tooltip">
+                      <h3><%= type.name %></h3>
+                    </div>
+                  </div>
+                <% } %>
+
+              </section>
+
+              <section class="deck__stats">
+                <div class="deck__card__stat">
+                  <i class="fa-solid fa-heart"></i>
+                  <h4><%= card.pv %></h4>
+                </div>
+                <div class="deck__card__stat">
+                  <i class="fa-solid fa-bolt"></i>
+                  <h4><%= card.attaque %></h4>
+                </div>
+                <div class="deck__card__stat">
+                  <i class="fa-solid fa-shield"></i>
+                  <h4><%= card.defense %></h4>
+                </div>
+                <div class="deck__card__stat">
+                  <i class="fa-solid fa-cloud-bolt"></i>
+                  <h4><%= card.attaque_spe %></h4>
+                </div>
+                <div class="deck__card__stat">
+                  <i class="fa-solid fa-shield-halved"></i>
+                  <h4><%= card.defense_spe %></h4>
+                </div>
+                <div class="deck__card__stat">
+                  <i class="fa-solid fa-angles-right"></i>
+                  <h4><%= card.vitesse %></h4>
+                </div>
+              </section>
+
+            </section>
+            <h3 class="poke__numero">#<%= card.numero %></h3>
+          </a>
+        </article>
+      <% }) %>
+
+    </div>
+    
+    <article class="back__to__main">
+      <a href="/"><i class="fa-solid fa-rotate-left"></i></a> 
+    </article>
+  </main>
+
+<!-- <script src="/js/deck.js"></script> -->
+
+<%- include('./partials/footer') %> 
