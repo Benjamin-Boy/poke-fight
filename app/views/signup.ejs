@@ -1,0 +1,67 @@
+<%- include('partials/headerLogin') %>
+
+<div class="container__body">
+    <div class="signup__container">
+
+        <div class="header__signup">
+            <h1>Poke Fight</h1>
+            <h4>Inscrivez vous et entrez dans le monde des Pokemon !</h4>
+        </div>
+
+        <div class="main__signup">
+
+            <form action="/signup" method="POST" id="signupForm" novalidate>
+
+                <div class="signup">
+                    <input type="text" class="form__signup__input" id="name" name="name" aria-describedby="lastnameHelp" placeholder="Votre nom">
+                    <% if(locals.nameExists) { %>
+                        <div style="text-align:center;color:red">
+                            <%= nameExists %>
+                        </div>
+                    <% } %>
+                </div>
+
+                <div class="signup">
+                    <input type="email" class="form__signup__input" id="email" name="email" aria-describedby="emailHelp" placeholder="Votre courriel">
+                    <% if(locals.emailInvalid) { %>
+                        <div style="text-align:center;color:red">
+                            <%= emailInvalid %>
+                        </div>
+                    <% } %>
+                    <% if(locals.emailExists) { %>
+                        <div style="text-align:center;color:red">
+                            <%= emailExists %>
+                        </div>
+                    <% } %>
+                </div>
+
+                <div class="signup">
+                    <input type="password" class="form__signup__input" id="password" name="password" placeholder="Votre mot de mot de passe">
+                </div>
+
+
+                <div class="signup">
+                    <input type="password" class="form__signup__input" id="passwordConfirm" name="passwordConfirm" placeholder="Confirmez votre mot de passe">
+                </div>
+
+                <% if(locals.passwordNotConfirm) { %>
+                    <div style="text-align:center;color:red">
+                        <%= passwordNotConfirm %>
+                    </div>
+                <% } %>
+
+                <% if(locals.allfields) { %>
+                    <div style="text-align:center;color:red">
+                        <%= allfields %>
+                    </div>
+                <% } %>
+
+                <button class="signupBtn">S'inscrire</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

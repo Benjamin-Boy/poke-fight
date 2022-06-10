@@ -28,3 +28,4 @@ window.onmousemove = function (e) {
         tooltips[i].style.left = x;
     }
 };
+

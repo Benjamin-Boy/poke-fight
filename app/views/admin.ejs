@@ -1,0 +1,74 @@
+<%- include('./partials/header') %>
+  </header>
+
+  <main class="main__admin">
+    <!-- Tab links -->
+    <div class="tab">
+      <button class="tablinks manageUsers">Users</button>
+      <button class="tablinks manageCards">Cards</button>
+      <button class="tablinks manageGameRules">Game Rules</button>
+    </div>
+
+    <!-- Tab content -->
+    <article class="tabcontent__container">
+      <section id="manageUsers" class="tabcontent">
+        <table>
+          <thead>
+            <tr>
+              <th>Identifiant</th>
+              <th>Pseudo</th>
+              <th>Email</th>
+              <th>Mot de passe</th>
+              <th>Niveau</th>
+              <th>Nbr parties</th>
+              <th>Nbr Victoires</th>
+              <th>Ratio Victoires/Défaites</th>
+              <th>Nbr cartes possédées</th>
+              <th>Nbr cartes achetées</th>
+              <th>Niveau moyen des cartes</th>
+              <th>Cartes les plus jouées</th>
+              <th>Types les plus joués</th>
+              <th>Carte la plus jouée</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Leomhann</td>
+              <td>leomhann@gmail.com</td>
+              <td>azerty</td>
+              <td>45</td>
+              <td>150</td>
+              <td>75</td>
+              <td>1.5</td>
+              <td>25</td>
+              <td>10</td>
+              <td>4</td>
+              <td>#</td>
+              <td>#</td>
+              <td>#</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="manageCards" class="tabcontent">
+        Liste des cartes
+        Supprimer une carte
+        Modifier une carte
+        Créer une nouvelle carte
+      </section>
+
+      <section id="manageGameRules" class="tabcontent">
+        Liste des règles
+        Supprimer une règle
+        Modifier une règle
+        Ajouter une règle
+      </section>
+    </article>
+
+  </main>
+
+  <script src="/js/admin.js"></script>
+
+<%- include('./partials/footer') %>

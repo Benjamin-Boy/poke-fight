@@ -1,0 +1,27 @@
+<%- include('./partials/headerLogin') %> 
+
+<div class="container__body">
+  <div class="login__container">
+
+      <div class="header__login">
+        <h1>Poke Fight</h1>
+        <h4>A Pokemon card game</h4>
+      </div>
+
+      <div class="main__login">
+
+        <form id="loginForm" method="POST" action="/">
+          <div class="login">
+            <input type="email" id="loginEmailInput" name="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPasswordInput" name="loginPassword" placeholder="Password" required>
+          </div>
+          <button class="loginBtn">Se connecter</button>
+        </form>
+
+        <a href="/signup">S'inscrire</a>
+
+      </div>
+    </div>
+</div>
+
+<%- include('./partials/footer') %> 

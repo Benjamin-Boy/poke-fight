@@ -2,15 +2,6 @@ const database = require('./database');
 
 const dataMapper = {
   getCardsList: async () =>{
-    // const query = `SELECT * FROM pokemon`;
-
-    // const query = `SELECT pokemon.id, pokemon.nom, pokemon.pv, pokemon.attaque, pokemon.defense, pokemon.attaque_spe, pokemon.defense_spe, pokemon.vitesse, pokemon.numero, type.name AS type_names
-    //   FROM pokemon
-    //   JOIN pokemon_type
-    //   ON pokemon.numero = pokemon_type.pokemon_numero
-    //   JOIN type
-    //   ON pokemon_type.type_id = type.id`;
-
     const query = `SELECT p.*,json_agg(type) AS type
     FROM pokemon AS p
     JOIN pokemon_type ON p.numero=pokemon_type.pokemon_numero
@@ -29,15 +20,9 @@ const dataMapper = {
 
     const result = await database.query(query);
 
-    // console.log(result.rows);
     return result.rows;
   },
   getCard: async (id) =>{
-    // const query = {
-    //   text: `SELECT * FROM pokemon WHERE id = $1`,
-    //   values: [id]
-    // }
-    
     const query = {
       text: `SELECT p.*,json_agg(type) AS type
       FROM pokemon AS p
@@ -59,24 +44,6 @@ const dataMapper = {
 
     const result = await database.query(query);
 
-    // if(result.rows.length > 1){
-    //   for(let i=0 ; i < result.rows.length ; i++){
-
-    //     if(i+1 <= result.rows.length-1){
-    //       const keys = Object.keys(result.rows[i+1]);
-
-    //       keys.forEach(key => {
-    //         if(result.rows[i][key] !== result.rows[i+1][key]) {
-    //           result.rows[i][key] = [result.rows[i][key], result.rows[i+1][key]];
-    //         }
-    //         else {
-    //           result.rows[i][key] = result.rows[i][key];
-    //         }
-    //       })
-    //     }
-    //   }
-    // }
-
     return result.rows[0];
   },
   getAllTypes: async () => {
@@ -84,6 +51,52 @@ const dataMapper = {
 
     const result = await database.query(query);
     return result.rows;
+  },
+  getAllUsers: async () => {
+    const query = `SELECT * FROM "user"`;
+
+    const result = await database.query(query);
+    return result.rows;
+  },
+  getUserByEmail: async (email) => {
+    const query = `SELECT * FROM "user" WHERE email = '${email}'`;
+
+    const result = await database.query(query);
+    return result.rows[0];
+  },
+  getUserByName: async (name) => {
+    const query = `SELECT * FROM "user" WHERE name = '${name}'`;
+
+    const result = await database.query(query);
+    return result.rows[0];
+  },
+  createNewUser: async (obj) => {
+    await database.query(`INSERT INTO "user" (name, email, password) VALUES ('${obj.name}', '${obj.email}', '${obj.password}')`);
+  },
+  getAllDecks: async (id) => {
+    const query = (`SELECT * FROM decks ORDER BY id`);
+
+    const result = await database.query(query);
+
+    return result.rows;
+  },
+  getDeck: async (id) => {
+    const query = (`SELECT * FROM decks WHERE id = ${id}`);
+
+    const result = await database.query(query);
+
+    return result.rows[0];
+  },
+  createNewDeck: async (obj) => {
+    await database.query(`INSERT INTO decks (name) VALUES ('${obj.name}')`);
+  },
+  updateDeck: async (name, id) => {
+    const query = {
+      text: `UPDATE decks SET name = $1 WHERE id = $2`,
+      values: [name, id]
+    }
+
+    await database.query(query);
   }
 }
 

@@ -1,17 +1,18 @@
 <%- include('./partials/header') %> 
-  <section id="filter">
+  <section id="filter" filter="<%= filter %>">
     <div class="filter__top">
       <input type="text" name="pokeName" id="pokeName" placeholder="Enter a Pokemon name">
       <a href="#" class="remove__filter"><h4>Effacer les filtres</h4></a>
     </div>
   </section>
-
   </header>
   <main>
-    <section id="filter">
+    <section id="filter" filter="<%= filter %>">
       <div class="filter__bottom">
-        <% for(const type of locals.types){ %>
-          <a href="/type/<%= type.name %>" id="pokeType" color="#<%= type.color %>"><%= type.name %></a>
+        <% for(const type of types){ %>
+          <form action="/type/<%= type.name %>" method="get">
+            <input type="submit" name="type" value="<%= type.name %>" class="pokeType" color="#<%= type.color %>">
+          </form>
         <% } %>
       </div>
     </section>

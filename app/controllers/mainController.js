@@ -1,17 +1,14 @@
 const dataMapper = require('../dataMapper');
 
 const mainController = {
-  homePage: async (req, res) => {
+  homePage: (req, res) => {
+    res.render('home', { filter: req.session.filter });
+  },
+  cardsList: async (req, res) => {
     try {
       const cards = await dataMapper.getCardsList();
 
-      // if(!req.session.filter){
-      //   req.session.filter = 'false';
-      // }
-
-      // console.log(req.session, 'HOME PAGE');
-
-      res.render('home', { cards, filter: req.session.filter });
+      res.render('cards', { cards, filter: req.session.filter });
     } catch (error) {
       res.status(500).send(error.message);
     }

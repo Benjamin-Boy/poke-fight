@@ -1,63 +1,18 @@
 <%- include('./partials/header') %> 
-  <section id="filter" filter="<%= filter %>">
-    <div class="filter__top">
-      <input type="text" name="pokeName" id="pokeName" placeholder="Enter a Pokemon name">
-      <a href="#" class="remove__filter"><h4>Effacer les filtres</h4></a>
-    </div>
-  </section>
-    <nav>
-      <ul>
-        <li><a href="/deck"><h4>Deck</h4></a></li>
-        <li class="list__toggle"><a href="#"><h4>Liste</h4></a></li>
-        <li class="show__filters"><h4>Filtres</h4></li>
-      </ul>
-    </nav>
   </header>
-  <main>
-    <section id="filter" filter="<%= filter %>">
-      <div class="filter__bottom">
-        <% for(const type of types){ %>
-          <form action="/type/<%= type.name %>" method="get">
-            <input type="submit" name="type" value="<%= type.name %>" class="pokeType" color="#<%= type.color %>">
-          </form>
-        <% } %>
-      </div>
-    </section>
-
-    <div class="cards__container container__thumbnails">
-      
-      <% cards.forEach((card) => { %>
-        <article class="card card__thumbnails">
-          <a href="/card/<%= card.id %>">
-            <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
-            <section class="poke__name__numero">
-              <h3 class="poke__numero">#<%= card.numero %></h3>
-              <h3 class="poke__name"><%= card.nom %></h3>
-            </section>
-          </a>
-        </article>
-      <% }) %>
-
-    </div>
-
-    <div class="cards__container container__list">
-
-      <ul>
-        <% cards.forEach((card) => { %>
-          <li class="card card__list">
-            <a href="/card/<%= card.id %>">
-              <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
-              <section class="poke__name__numero">
-                <h3 class="poke__numero">#<%= card.numero %></h3>
-                <h3 class="poke__name"><%= card.nom %></h3>
-              </section>
-            </a>
-          </li>
-        <% }) %>
-      </ul>
-
-    </div>
+  <main class="main__home">
+    <a href="/game" class="game__link">
+      <h2>GAME</h2>
+    </a>
+    <a href="/cards" class="card__shop__link">
+      <h2>CARD SHOP</h2>
+    </a>
+    <a href="/deck" class="deck__link">
+      <h2>DECK</h2>
+    </a>
   </main>
+
+</div>
 
 <script src="/js/home.js"></script>
 

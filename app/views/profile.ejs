@@ -1,0 +1,69 @@
+<%- include('./partials/header') %>
+  </header>
+
+  <main class="main__profile">
+    <section class="profile__infos__container">
+      <div class="profile__avatar">
+        <img src="/img/profile_img.png" alt="profile__img">
+      </div>
+      <div class="profile__infos">
+        <h1><%= locals.user.name %></h1>
+        <h3>Level</h3>
+        <i class="fa-solid fa-pen"></i>
+      </div>
+    </section>
+    <section class="profile__stats__container">
+      <div class="games__stats">
+        <div class="stat">
+          <h3>Parties</h3>
+          <h4><%= locals.user.parties %></h4>
+        </div>
+        <div class="stat">
+          <h3>Victoires</h3>
+          <h4><%= locals.user.victories %></h4>
+        </div>
+        <div class="stat">
+          <h3>Ratio victoires/défaites</h3>
+          <h4><%= locals.user.victoryratio %></h4>
+        </div>
+      </div>
+      <div class="cards__stats">
+        <div class="stat">
+          <h3>Cartes possédées</h3>
+          <h4><%= locals.user.cardsowned %></h4>
+        </div>
+        <div class="stat">
+          <h3>Cartes achetées</h3>
+          <h4><%= locals.user.cardsbought %></h4>
+        </div>
+        <div class="stat">
+          <h3>Niveau moyen cartes</h3>
+          <h4><%= locals.user.cardslevel %></h4>
+        </div>
+      </div>
+      <div class="cards__game">
+          <div class="stat">
+            <h3>Cartes les plus jouées</h3>
+            <div class="played__cards">
+              <h4><img src="/img/4.png" alt=""></h4>
+              <h4><img src="/img/12.png" alt=""></h4>
+              <h4><img src="/img/7.png" alt=""></h4>
+            </div>
+          </div>
+          <div class="stat">
+            <h3>Types les plus jouées</h3>
+            <div class="played__types">
+              <h4><img src="/icons/acier.svg" alt=""></h4>
+              <h4><img src="/icons/combat.svg" alt=""></h4>
+              <h4><img src="/icons/insecte.svg" alt=""></h4>
+            </div>
+          </div>
+          <div class="card__most__played">
+            <img src="/img/4.png" alt="">
+          </div>
+      </div>
+    </section>
+  </main>
+
+
+<%- include('./partials/footer') %>
