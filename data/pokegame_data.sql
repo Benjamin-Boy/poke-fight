@@ -1,26 +1,16 @@
 --
--- Structure de la table 'pokemon'
+-- Contenu de la table 'users'
 --
 
-DROP TABLE IF EXISTS "pokemon";
-
-CREATE TABLE "pokemon" (
-  "id" int NOT NULL,
-  "nom" varchar(255) NOT NULL,
-  "pv" int NOT NULL,
-  "attaque" int NOT NULL,
-  "defense" int NOT NULL,
-  "attaque_spe" int NOT NULL,
-  "defense_spe" int NOT NULL,
-  "vitesse" int NOT NULL,
-  "numero" int NOT NULL
-);
-
 --
--- Contenu de la table 'pokemon'
+-- Contenu de la table 'decks'
 --
 
-INSERT INTO "pokemon" ("id", "nom", "pv", "attaque", "defense", "attaque_spe", "defense_spe", "vitesse", "numero") VALUES
+--
+-- Contenu de la table 'pokemon_card'
+--
+
+INSERT INTO "pokemon_card" ("id", "nom", "pv", "attaque", "defense", "attaque_spe", "defense_spe", "vitesse", "numero") VALUES
 (1209, 'Bulbizarre', 45, 49, 49, 65, 65, 45, 1),
 (1210, 'Herbizarre', 60, 62, 63, 80, 80, 60, 2),
 (1211, 'Florizarre', 80, 82, 83, 100, 100, 80, 3),
@@ -173,18 +163,15 @@ INSERT INTO "pokemon" ("id", "nom", "pv", "attaque", "defense", "attaque_spe", "
 (1358, 'Mewtwo', 106, 110, 90, 154, 90, 130, 150),
 (1359, 'Mew', 100, 100, 100, 100, 100, 100, 151);
 
--- --------------------------------------------------------
-
 --
--- Structure de la table 'pokemon_type'
+-- Contenu de la table 'pokemon_rank'
 --
-DROP TABLE IF EXISTS "pokemon_type";
 
-CREATE TABLE "pokemon_type" (
-  "id" int NOT NULL,
-  "pokemon_numero" int NOT NULL,
-  "type_id" int NOT NULL
-);
+INSERT INTO "pokemon_rank" ("name") VALUES
+('Common'),
+('Rare'),
+('Epic'),
+('Legendary');
 
 --
 -- Contenu de la table 'pokemon_type'
@@ -406,20 +393,6 @@ INSERT INTO "pokemon_type" ("id", "pokemon_numero", "type_id") VALUES
 (643, 149, 17),
 (644, 150, 12),
 (645, 151, 12);
-
--- --------------------------------------------------------
-
---
--- Structure de la table 'type'
---
-
-DROP TABLE IF EXISTS "type";
-
-CREATE TABLE "type" (
-  "id" int NOT NULL,
-  "name" varchar(255) NOT NULL,
-  "color" varchar(6) NOT NULL
-);
 
 --
 -- Contenu de la table "type"

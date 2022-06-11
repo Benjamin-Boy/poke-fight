@@ -1,3 +1,4 @@
+// Card animation
 function map(val, minA, maxA, minB, maxB) {
   return minB + ((val - minA) * (maxB - minB)) / (maxA - minA);
 }
@@ -67,3 +68,5 @@ cards.forEach((card) => {
 // function showDeckCards(deck){
 //   console.log(deck.toElement.innerText);
 // }
+
+// 

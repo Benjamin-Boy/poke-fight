@@ -826,6 +826,7 @@ nav li{
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  min-width: 1200px;
 }
 
 .profile__infos__container{
@@ -866,7 +867,7 @@ nav li{
 .cards__stats,
 .cards__game{
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 10em;
 }
 

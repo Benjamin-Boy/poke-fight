@@ -41,30 +41,40 @@ const authController = {
 
     const userName = await dataMapper.getUserByName(req.body.name);
 
-    if(userName.name === req.body.name){
+    if(userName && userName.name === req.body.name){
       return res.render('signup', { nameExists: errorMessages.nameExists });
     }
+
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    req.body.password = hashedPassword;
 
     await dataMapper.createNewUser(req.body); // TODO Ajouter les validations (password valide, compte déjà existant)
 
     res.redirect('/');
   },
   login: async (req, res) => {
-    const user = await dataMapper.getUserByEmail(req.body.loginEmail);
+    try {
+      const user = await dataMapper.getUserByEmail(req.body.email);
 
-    if(!user){
-      console.log(`Cet email n'existe pas`);
-      return res.redirect('/');
-    }
-
-    if(user.password !== req.body.loginPassword){
-      console.log(`Le mot de passe est erroné`);
-      return res.redirect('/');
-    }
-    
-    req.session.user = user;
+      if(!user){
+        console.log(`Cet email n'existe pas`);
+        return res.redirect('/');
+      }
   
-    res.redirect('/home');
+      const passwordValid = await bcrypt.compare(req.body.password, user.password);
+  
+      if(!passwordValid){
+        console.log(`Le mot de passe est erroné`);
+        return res.redirect('/');
+      }
+      
+      req.session.user = user;
+    
+      res.redirect('/home');
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+
   },
   logout: (req, res) => {
     req.session.destroy();

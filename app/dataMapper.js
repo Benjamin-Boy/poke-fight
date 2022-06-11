@@ -3,7 +3,7 @@ const database = require('./database');
 const dataMapper = {
   getCardsList: async () =>{
     const query = `SELECT p.*,json_agg(type) AS type
-    FROM pokemon AS p
+    FROM pokemon_card AS p
     JOIN pokemon_type ON p.numero=pokemon_type.pokemon_numero
     JOIN type ON pokemon_type.type_id=type.id
     GROUP BY
@@ -25,7 +25,7 @@ const dataMapper = {
   getCard: async (id) =>{
     const query = {
       text: `SELECT p.*,json_agg(type) AS type
-      FROM pokemon AS p
+      FROM pokemon_card AS p
       JOIN pokemon_type ON p.numero=pokemon_type.pokemon_numero
       JOIN type ON pokemon_type.type_id=type.id
       WHERE p.id = $1
@@ -53,25 +53,25 @@ const dataMapper = {
     return result.rows;
   },
   getAllUsers: async () => {
-    const query = `SELECT * FROM "user"`;
+    const query = `SELECT * FROM "users"`;
 
     const result = await database.query(query);
     return result.rows;
   },
   getUserByEmail: async (email) => {
-    const query = `SELECT * FROM "user" WHERE email = '${email}'`;
+    const query = `SELECT * FROM "users" WHERE email = '${email}'`;
 
     const result = await database.query(query);
     return result.rows[0];
   },
   getUserByName: async (name) => {
-    const query = `SELECT * FROM "user" WHERE name = '${name}'`;
+    const query = `SELECT * FROM "users" WHERE name = '${name}'`;
 
     const result = await database.query(query);
     return result.rows[0];
   },
   createNewUser: async (obj) => {
-    await database.query(`INSERT INTO "user" (name, email, password) VALUES ('${obj.name}', '${obj.email}', '${obj.password}')`);
+    await database.query(`INSERT INTO "users" (name, email, password) VALUES ('${obj.name}', '${obj.email}', '${obj.password}')`);
   },
   getAllDecks: async (id) => {
     const query = (`SELECT * FROM decks ORDER BY id`);

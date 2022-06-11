@@ -43,9 +43,6 @@ const deckController = {
       const propertyName = Object.keys(req.body);
       const deckId = propertyName[0].slice(5);
 
-      // console.log(req.body[`name_${deckId}`]);
-      // console.log(Number(deckId));
-
       await dataMapper.updateDeck(req.body[`name_${deckId}`], Number(deckId));
 
       req.session.decks = [];
@@ -82,7 +79,16 @@ const deckController = {
     } catch (error) {
       res.status(500).send(error.message);
     }
-  }
+  },
+  // TODO Filter cards for current deck,
+  // TODO Filter by name,
+  // TODO Filter by type,
+  // TODO Filter by rank
+  // TODO Ajouter fonctio modifier deck
+  // TODO Ajouter fonctio supprimer deck
+  // TODO Ajouter fonctio ajout de carte au deck
+  // TODO Ajouter fonctio changer carte de deck
+  // TODO Ajouter cartes sans deck dans inventaire
 }
 
 module.exports = deckController;
