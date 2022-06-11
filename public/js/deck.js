@@ -64,7 +64,6 @@ cards.forEach((card) => {
 
 //   id++;
 // });
-
 // function showDeckCards(deck){
 //   console.log(deck.toElement.innerText);
 // }
