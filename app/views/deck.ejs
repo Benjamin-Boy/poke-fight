@@ -21,7 +21,7 @@
         <% cards.forEach((card) => { %>
           <article class="card__deck">
             <a href="/card/<%= card.id %>">
-              <h3 class="poke__name"><%= card.nom %></h3>
+              <h3 class="poke__name" id="cardName"><%= card.nom %></h3>
               <div class="card__deck__img">
                 <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
               </div>
@@ -96,23 +96,23 @@
 
         <section class="card__types">
           <ul>
-            <li><h3>Acier</h3></li>
-            <li><h3>Combat</h3></li>
-            <li><h3>Dragon</h3></li>
-            <li><h3>Eau</h3></li>
-            <li><h3>Électrik</h3></li>
-            <li><h3>Feu</h3></li>
-            <li><h3>Glace</h3></li>
-            <li><h3>Insecte</h3></li>
-            <li><h3>Normal</h3></li>
-            <li><h3>Plante</h3></li>
-            <li><h3>Poison</h3></li>
-            <li><h3>Psy</h3></li>
-            <li><h3>Roche</h3></li>
-            <li><h3>Sol</h3></li>
-            <li><h3>Spectre</h3></li>
-            <li><h3>Ténèbres</h3></li>
-            <li><h3>Vol</h3></li>
+            <li><h3 class="cardType">Acier</h3></li>
+            <li><h3 class="cardType">Combat</h3></li>
+            <li><h3 class="cardType">Dragon</h3></li>
+            <li><h3 class="cardType">Eau</h3></li>
+            <li><h3 class="cardType">Electrik</h3></li>
+            <li><h3 class="cardType">Feu</h3></li>
+            <li><h3 class="cardType">Glace</h3></li>
+            <li><h3 class="cardType">Insecte</h3></li>
+            <li><h3 class="cardType">Normal</h3></li>
+            <li><h3 class="cardType">Plante</h3></li>
+            <li><h3 class="cardType">Poison</h3></li>
+            <li><h3 class="cardType">Psy</h3></li>
+            <li><h3 class="cardType">Roche</h3></li>
+            <li><h3 class="cardType">Sol</h3></li>
+            <li><h3 class="cardType">Spectre</h3></li>
+            <li><h3 class="cardType">Ténèbres</h3></li>
+            <li><h3 class="cardType">Vol</h3></li>
           </ul>
         </section>
 

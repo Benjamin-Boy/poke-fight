@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
 
 /****** VARIABLES ******/
 
-:root{
+:root {
   --main-color: #c14040;
   --secondary-color: #202c64;
   --main-text-color: white;
@@ -10,29 +10,29 @@
 
 /****** MAIN STYLE ******/
 
-body{
-  font-family: 'Bree Serif', serif;
+body {
+  font-family: "Bree Serif", serif;
   overflow: hidden;
 }
 
-a{
+a {
   text-decoration: none;
   color: white;
 }
 
-h1{
+h1 {
   font-size: 2.5rem;
 }
 
-h2{
+h2 {
   font-size: 2rem;
 }
 
-h3{
+h3 {
   font-size: 1.2rem;
 }
 
-.container{
+.container {
   padding: 30px;
   background-color: var(--main-color);
   display: flex;
@@ -43,7 +43,7 @@ h3{
   overflow: auto;
 }
 
-header{
+header {
   height: 20px;
   display: flex;
   justify-content: space-between;
@@ -53,18 +53,18 @@ header{
   border-radius: 25px;
 }
 
-header a{
+header a {
   color: var(--main-color);
 }
 
-nav li{
+nav li {
   color: var(--main-color);
   vertical-align: bottom;
   display: inline-block;
   margin: 0 5px;
 }
 
-.filter__top{
+.filter__top {
   position: relative;
   display: none;
   justify-content: center;
@@ -74,7 +74,7 @@ nav li{
   animation: filterTop 250ms forwards;
 }
 
-.filter__top input{
+.filter__top input {
   border-radius: 5px;
   border: 1px solid var(--main-color);
   height: 20px;
@@ -82,23 +82,23 @@ nav li{
 }
 
 @keyframes filterTop {
-  0%{
+  0% {
     transform: scaleY(0);
   }
-  80%{
+  80% {
     transform: scaleY(1.1);
   }
-  100%{
+  100% {
     transform: scaleY(1);
   }
 }
 
-.show__filters{
+.show__filters {
   cursor: pointer;
   color: var(--main-color);
 }
 
-.filter__bottom{
+.filter__bottom {
   display: none;
   justify-content: center;
   align-items: center;
@@ -108,91 +108,91 @@ nav li{
   animation: filterBottom 250ms forwards;
 }
 
-.filter__bottom a{
+.filter__bottom a {
   color: white;
   transition: all 150ms ease;
 }
 
-.filter__bottom a:hover{
+.filter__bottom a:hover {
   transform: scale(1.1);
 }
 
 @keyframes filterBottom {
-  0%{
+  0% {
     transform: scaleY(0);
   }
-  80%{
+  80% {
     transform: scaleY(1.1);
   }
-  100%{
+  100% {
     transform: scaleY(1);
   }
 }
 
-#pokeType{
+#pokeType {
   background-color: green;
   padding: 5px 20px;
   border-radius: 5px;
 }
 
-.remove__filter{
+.remove__filter {
   position: absolute;
   right: -150px;
 }
 
-.cards__container{
+.cards__container {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
 }
 
-.container__thumbnails{
+.container__thumbnails {
   justify-content: center;
 }
 
-.container__list{
+.container__list {
   display: none;
   justify-content: center;
   animation: cardsContainerList 150ms forwards;
 }
 
-.container__list ul{
+.container__list ul {
   width: 100%;
 }
 
 @keyframes cardsContainerList {
-  0%{
+  0% {
     transform: scaleX(0.6);
   }
-  100%{
+  100% {
     transform: scaleX(1);
   }
 }
 
-.card{
+.card {
   background-color: #982c2c;
   transition: all 200ms ease-in-out;
 }
 
-.card:hover{
+.card:hover {
   background-color: #e24242;
   transform: scale(1.1);
 }
 
-.card:hover img{
+.card:hover img {
   transform: scale(1.15);
 }
 
-.card:hover .poke__name__numero{
+.card:hover .poke__name__numero {
   transform: scale(1.2);
 }
 
-.card img{
+.card img {
   width: 100%;
   transition: all 250ms ease-in-out;
 }
 
-.card__thumbnails{
+.card__thumbnails {
   cursor: pointer;
   position: relative;
   width: 250px;
@@ -204,24 +204,24 @@ nav li{
   border-radius: 25px;
 }
 
-.card__list{
+.card__list {
   width: 40%;
   margin: 10px auto;
   border-radius: 5px;
 }
 
-.card__list a{
+.card__list a {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 25px;
 }
 
-.card__list img{
+.card__list img {
   width: 5%;
 }
 
-.poke__name__numero{
+.poke__name__numero {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -232,25 +232,25 @@ nav li{
 }
 
 .poke__name__title,
-.back__to__main{
+.back__to__main {
   color: white;
   text-align: center;
 }
 
-.back__to__main{
+.back__to__main {
   font-size: 4rem;
   cursor: pointer;
 }
 
-.back__to__main i{
-  transition: all 200ms ease
+.back__to__main i {
+  transition: all 200ms ease;
 }
 
-.back__to__main i:hover{
+.back__to__main i:hover {
   transform: rotate(-270deg);
 }
 
-.poke__details{
+.poke__details {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -258,16 +258,16 @@ nav li{
   color: white;
 }
 
-.poke__img{
+.poke__img {
   width: 30%;
   text-align: center;
 }
 
-.poke__img img{
+.poke__img img {
   width: 100%;
 }
 
-.poke__infos{
+.poke__infos {
   position: relative;
   background-color: #ab3838;
   border-radius: 10px;
@@ -288,7 +288,7 @@ nav li{
   }
 } */
 
-.poke__to__deck i{
+.poke__to__deck i {
   position: absolute;
   right: 0;
   top: 0;
@@ -300,12 +300,12 @@ nav li{
   transition: all 100ms ease-in-out;
 }
 
-.poke__to__deck i:hover{
+.poke__to__deck i:hover {
   border: 2px solid white;
   border-radius: 0 10px 0 10px;
 }
 
-.poke__infos__name__numero{
+.poke__infos__name__numero {
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -313,21 +313,21 @@ nav li{
   gap: 10px;
 }
 
-.poke__stats__table{
+.poke__stats__table {
   width: 100%;
 }
 
-.poke__stats__table td{
+.poke__stats__table td {
   padding: 5px;
   height: 30px;
   vertical-align: middle;
 }
 
-.slider__td{
+.slider__td {
   width: 60%;
 }
 
-.stat__slider__container{
+.stat__slider__container {
   cursor: pointer;
   background-color: #632b2b;
   width: 100%;
@@ -336,24 +336,24 @@ nav li{
   transition: all 150ms ease-in-out;
 }
 
-.stat__slider__container:hover{
+.stat__slider__container:hover {
   height: 110%;
 }
 
-.stat__slider{
+.stat__slider {
   background-color: white;
   width: 20%;
   height: 100%;
   border-radius: 5px 0 0 5px;
 }
 
-.poke__types{
+.poke__types {
   display: flex;
   justify-content: flex-start;
   gap: 20px;
 }
 
-.poke__type__container{
+.poke__type__container {
   cursor: pointer;
   background-color: #632b2b;
   display: flex;
@@ -367,32 +367,32 @@ nav li{
   transition: all 150ms ease-in-out;
 }
 
-.poke__type__container:hover{
+.poke__type__container:hover {
   border: 1px solid #ddd;
   /* transform: scale(1.1); */
 }
 
 .tooltip {
-  display:none;
+  display: none;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
 }
 
-.poke__type__container:hover .tooltip{
+.poke__type__container:hover .tooltip {
   display: block;
   position: fixed;
   overflow: hidden;
 }
 
-.poke__types img{
+.poke__types img {
   width: 50px;
 }
 
 /******* DECK ********/
 
-.deck__container{
+.deck__container {
   width: 100%;
   height: calc(100vh - 150px);
   overflow: hidden;
@@ -403,24 +403,23 @@ nav li{
 
 /******* DECK__LIST ********/
 
-.deckList{
+.deckList {
   background-color: var(--secondary-color);
   flex-grow: 1;
   min-width: 250px;
   padding: 20px 20px;
   /* border: 10px solid rgb(0, 0, 110); */
   overflow: auto;
-
 }
 
-.deckList ul{
+.deckList ul {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 5px;
 }
 
-.deckList li{
+.deckList li {
   height: 50px;
   line-height: 50px;
   padding: 10px 15px;
@@ -431,12 +430,12 @@ nav li{
   transition: all 100ms ease-in-out;
 }
 
-.deckList li:hover{
+.deckList li:hover {
   border: 1px solid white;
   box-shadow: inset 0px 0px 25px 5px rgba(255, 255, 255, 0.6);
 }
 
-.deckList input{
+.deckList input {
   /* height: 100%; */
   width: 100%;
   outline: none;
@@ -446,13 +445,13 @@ nav li{
   font-size: 1.2em;
 }
 
-.add__deck{
+.add__deck {
   text-align: center;
 }
 
 /******* DECK__FILTER ********/
 
-.deck__filter{
+.deck__filter {
   background-color: var(--secondary-color);
   flex-grow: 3;
   /* max-width: 250px; */
@@ -461,21 +460,21 @@ nav li{
   color: white;
 }
 
-.deck__filter hr{
+.deck__filter hr {
   margin: 10px 0;
 }
 
-.deck__filter__icon{
+.deck__filter__icon {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.deck__filter__icon img{
+.deck__filter__icon img {
   width: 50px;
 }
 
-.card__name input{
+.card__name input {
   height: 40px;
   border: 1px solid var(--main-color);
   border-radius: 5px;
@@ -483,20 +482,20 @@ nav li{
   padding: 0 10px;
 }
 
-#cardLevelSlider{
+#cardLevelSlider {
   width: 100%;
   height: 20px;
   background-color: var(--main-color);
 }
 
-.card__types ul{
+.card__types ul {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
 }
 
 .card__types li,
-.card__rarity li{
+.card__rarity li {
   cursor: pointer;
   width: 30%;
   padding: 5px 40px 5px 5px;
@@ -506,20 +505,23 @@ nav li{
 }
 
 .card__types li:hover,
-.card__rarity li:hover{
+.card__rarity li:hover {
   background-color: rgb(0, 118, 0);
 }
 
 .card__types li:active,
-.card__rarity li:active{
+.card__rarity li:active {
   background-color: rgb(0, 118, 0);
-  border: 1px solid rgb(255, 255, 255);;
+  border: 1px solid rgb(255, 255, 255);
 }
 
+.cardType-active {
+  background-color: rgb(202, 199, 47);
+}
 
 /******* DECK CARDS LIST ********/
 
-.deck__cards{
+.deck__cards {
   background-color: red;
   /* flex-grow: 2; */
   overflow: auto;
@@ -533,11 +535,11 @@ nav li{
 /******* DECK CARD ********/
 
 .poke__name,
-.poke__numero{
+.poke__numero {
   text-align: center;
 }
 
-.card__deck{
+.card__deck {
   background-color: #982c2c;
   cursor: pointer;
   width: 250px;
@@ -559,26 +561,26 @@ nav li{
   /* transform: scale(1.1); */
 }
 
-.card__deck__img img{
+.card__deck__img img {
   width: 100%;
   transition: all 250ms ease-in-out;
-  filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.5));
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
 }
 
-.card__deck:hover .card__deck__img img{
+.card__deck:hover .card__deck__img img {
   transform: scale(1.25);
-  filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.7));
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.7));
 }
 
-.card__deck:hover .add__to__deck i{
+.card__deck:hover .add__to__deck i {
   opacity: 1;
 }
 
-.deck__type__container img{
+.deck__type__container img {
   width: 100%;
 }
 
-.card__deck a{
+.card__deck a {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -588,12 +590,12 @@ nav li{
   pointer-events: none;
 }
 
-.deck__types{
+.deck__types {
   display: flex;
   flex-direction: column;
 }
 
-.deck__stats__left{
+.deck__stats__left {
   position: absolute;
   left: 0;
   height: 90%;
@@ -602,18 +604,18 @@ nav li{
   justify-content: space-between;
 }
 
-.deck__stats{
+.deck__stats {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.deck__card__stat{
+.deck__card__stat {
   display: flex;
   gap: 10px;
 }
 
-.deck__type__container{
+.deck__type__container {
   cursor: pointer;
   background-color: #632b2b00;
   margin-bottom: 5px;
@@ -627,7 +629,7 @@ nav li{
 }
 
 .deck__tooltip {
-  display:none;
+  display: none;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 2px 5px;
   border-radius: 5px;
@@ -635,19 +637,19 @@ nav li{
   z-index: 2;
 }
 
-.deck__tooltip h3{
+.deck__tooltip h3 {
   font-size: 1em;
 }
 
-.deck__type__container:hover .deck__tooltip{
+.deck__type__container:hover .deck__tooltip {
   display: block;
 }
 
-.add__to__deck{
+.add__to__deck {
   position: absolute;
 }
 
-.add__to__deck i{
+.add__to__deck i {
   opacity: 0;
   font-size: 5em;
   text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
@@ -655,7 +657,7 @@ nav li{
 
 /******* LOGIN ********/
 
-.container__body{
+.container__body {
   background-color: #c14040;
   display: flex;
   justify-content: center;
@@ -664,7 +666,7 @@ nav li{
 }
 
 .login__container,
-.signup__container{
+.signup__container {
   text-align: center;
   background-color: #efe3e3;
   display: flex;
@@ -677,7 +679,7 @@ nav li{
 }
 
 .header__login,
-.header__signup{
+.header__signup {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -686,7 +688,7 @@ nav li{
 }
 
 .main__login,
-.main__signup{
+.main__signup {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -695,16 +697,16 @@ nav li{
   gap: 20px;
 }
 
-.main__login a{
+.main__login a {
   color: var(--main-color);
 }
 
-.main__login a:hover{
+.main__login a:hover {
   color: #aaa;
 }
 
 #loginForm,
-#signupForm{
+#signupForm {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -714,7 +716,7 @@ nav li{
 }
 
 .loginBtn,
-.signupBtn{
+.signupBtn {
   cursor: pointer;
   border: none;
   font-size: 0.9em;
@@ -725,13 +727,13 @@ nav li{
 }
 
 .loginBtn:hover,
-.signupBtn:hover{
-  color:#c14040;
+.signupBtn:hover {
+  color: #c14040;
   background-color: #bbb;
 }
 
 .login,
-.signup{
+.signup {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -741,7 +743,7 @@ nav li{
 }
 
 .login input,
-.signup input{
+.signup input {
   height: 25px;
   padding-left: 10px;
   width: 100%;
@@ -749,7 +751,7 @@ nav li{
 
 /******* HOME ********/
 
-.main__home{
+.main__home {
   color: white;
   margin: 0 auto;
   display: grid;
@@ -758,16 +760,16 @@ nav li{
   /* grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr; */
   /* grid-gap: 1rem; */
-  grid-template-areas: 
-    'game game deck'
-    'game game deck'
-    'game game cardShop'
-    'game game cardShop';
+  grid-template-areas:
+    "game game deck"
+    "game game deck"
+    "game game cardShop"
+    "game game cardShop";
 }
 
 .game__link,
 .deck__link,
-.card__shop__link{
+.card__shop__link {
   padding: 10px;
   backdrop-filter: saturate(150%) blur(10px);
   background-color: rgba(0, 0, 0, 0.4);
@@ -778,7 +780,7 @@ nav li{
 
 .game__link:hover,
 .deck__link:hover,
-.card__shop__link:hover{
+.card__shop__link:hover {
   backdrop-filter: saturate(150%) blur(50px);
   background-color: rgba(255, 255, 255, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -786,73 +788,73 @@ nav li{
 
 .game__link:hover h2,
 .deck__link:hover h2,
-.card__shop__link:hover h2{
+.card__shop__link:hover h2 {
   animation: linkTitleAnim 500ms forwards;
 }
 
 @keyframes linkTitleAnim {
-  0%{
+  0% {
     transform: translateY(0);
   }
-  10%{
+  10% {
     transform: translateY(10px);
   }
-  60%{
+  60% {
     transform: translateY(-10px);
   }
-  100%{
+  100% {
     transform: translateY(0);
   }
 }
 
-.game__link{
+.game__link {
   border-radius: 20px 0 0 20px;
   grid-area: game;
 }
 
-.deck__link{
+.deck__link {
   border-radius: 0 20px 0 0;
   grid-area: deck;
 }
 
-.card__shop__link{
+.card__shop__link {
   border-radius: 0 0 20px 0;
   grid-area: cardShop;
 }
 
 /******* PROFILE ********/
 
-.main__profile{
+.main__profile {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   min-width: 1200px;
 }
 
-.profile__infos__container{
+.profile__infos__container {
   display: flex;
   align-items: center;
   gap: 2em;
 }
 
-.profile__avatar img{
+.profile__avatar img {
   background-color: #982c2c2a;
   border-radius: 50%;
   width: 8em;
 }
 
-.profile__infos{
+.profile__infos {
   display: flex;
   align-items: baseline;
   gap: 0.5em;
 }
 
-.profile__infos i:hover{
+.profile__infos i:hover {
   cursor: pointer;
   color: white;
 }
 
-.profile__stats__container{
+.profile__stats__container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -865,13 +867,13 @@ nav li{
 
 .games__stats,
 .cards__stats,
-.cards__game{
+.cards__game {
   display: flex;
   justify-content: center;
   gap: 10em;
 }
 
-.stat{
+.stat {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -879,33 +881,33 @@ nav li{
 }
 
 .played__cards,
-.played__types{
+.played__types {
   display: flex;
   gap: 0.8em;
 }
 
 .played__cards img,
-.played__types img{
+.played__types img {
   width: 40px;
   background-color: rgba(255, 0, 0, 0.301);
   padding: 10px;
   border-radius: 50%;
 }
 
-.card__most__played img{
+.card__most__played img {
   width: 200px;
 }
 
 /******** ADMIN ********/
 
-.main__admin{
+.main__admin {
   display: flex;
   flex-direction: column;
   /* margin: 0 auto; */
 }
 
- /* Style the tab */
- .tab {
+/* Style the tab */
+.tab {
   overflow: hidden;
   border: 1px solid #ccc;
   border-radius: 20px 20px 0 0;
@@ -934,13 +936,13 @@ nav li{
 /* Style the tab content */
 .tabcontent {
   display: none;
-} 
+}
 
-.tabcontent__container{
+.tabcontent__container {
   display: flex;
   justify-content: center;
   padding: 30px;
-  border-radius: 0 0 20px 20px ;
+  border-radius: 0 0 20px 20px;
   height: 500px;
   background-color: rgba(25, 25, 73, 0.367);
 }
