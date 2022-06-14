@@ -76,3 +76,12 @@ CREATE TABLE "type" (
   "name" varchar(255) NOT NULL,
   "color" varchar(6) NOT NULL
 );
+
+--
+-- Structure de la table 'inventory'
+--
+
+CREATE TABLE "inventory" (
+  "id" int NOT NULL,
+  "card_id" int REFERENCES pokemon_card(id)
+);
