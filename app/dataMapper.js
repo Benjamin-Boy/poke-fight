@@ -73,6 +73,31 @@ const dataMapper = {
   createNewUser: async (obj) => {
     await database.query(`INSERT INTO "users" (name, email, password) VALUES ('${obj.name}', '${obj.email}', '${obj.password}')`);
   },
+  getInventory: async () =>{
+    const query = `SELECT p.*,json_agg(type) AS type
+    FROM pokemon_card AS p
+    JOIN inventory ON P.id = inventory.card_id
+    JOIN pokemon_type ON p.numero=pokemon_type.pokemon_numero
+    JOIN type ON pokemon_type.type_id=type.id
+    GROUP BY
+    p.id,
+    p.nom,
+    p.pv,
+    p.attaque,
+    p.defense,
+    p.attaque_spe,
+    p.defense_spe,
+    p.vitesse,
+    p.numero
+    ORDER BY p.numero`;
+
+    const result = await database.query(query);
+
+    return result.rows;
+  },
+  addToInventory: async (id) => {
+    await database.query(`INSERT INTO inventory (card_id) VALUES (${id})`);
+  },
   getAllDecks: async (id) => {
     const query = (`SELECT * FROM decks ORDER BY id`);
 
@@ -94,6 +119,14 @@ const dataMapper = {
     const query = {
       text: `UPDATE decks SET name = $1 WHERE id = $2`,
       values: [name, id]
+    }
+
+    await database.query(query);
+  },
+  removeDeck: async (id) => {
+    const query = {
+      text: `DELETE FROM decks WHERE id = $1`,
+      values: [id]
     }
 
     await database.query(query);

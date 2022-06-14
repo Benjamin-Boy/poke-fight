@@ -99,8 +99,6 @@ cardsList.forEach((card) => {
   }
 });
 
-console.log(activeCards.length);
-
 function filterCards(card) {
   // Creates an array to fill with every type of the current card
   const types = [];
@@ -171,8 +169,6 @@ typesList.forEach((type) => {
       filterActive = false;
     }
 
-    // console.log(arrayTypes.length);
-
     activeCards = [];
 
     cardsList.forEach((card) => {
@@ -184,3 +180,34 @@ typesList.forEach((type) => {
     console.log(activeCards.length);
   });
 });
+
+
+// Allows updating of deck name
+const updateDeckBtn = document.querySelector('#updateBtn');
+const deleteDeckBtn = document.querySelector('#deleteBtn');
+const deckNameInput = document.querySelector('#deckNameInput');
+
+updateDeckBtn.addEventListener('click', () => {
+  deckNameInput.style.cursor = 'auto';
+  deckNameInput.removeAttribute('readonly');
+  updateDeckBtn.style.display = 'none';
+  deleteDeckBtn.style.display = 'none';
+});
+
+// Allows choosing which deck to add card to
+// const cardsDeck = document.querySelectorAll('.card__deck');
+const addCardBtns = document.querySelectorAll('#addCardBtn');
+
+addCardBtns.forEach(cardBtn => {
+  cardBtn.addEventListener('click', () => {
+    const cardDeckList = cardBtn.parentNode.querySelector('.card__deck__list');
+
+    if (cardDeckList.style.opacity !== "1") {
+      cardDeckList.style.opacity = "1"; 
+    }
+    else {
+      cardDeckList.style.opacity = "0"; 
+    }
+  });
+});
+

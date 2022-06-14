@@ -3,7 +3,8 @@ const dataMapper = require("../dataMapper");
 const deckController = {
   deckPage: async (req, res) => {
     try {
-      const cards = await dataMapper.getCardsList();
+      // const cards = await dataMapper.getCardsList();
+      const cards = await dataMapper.getInventory();
       const decks = await dataMapper.getAllDecks();
 
       // for(const deck of decks){
@@ -58,36 +59,73 @@ const deckController = {
       res.status(500).send(error.message);
     }
   },
-  addToDeck: async (req, res) => {
+  removeDeck: async (req, res) => {
     try {
-      // if(!req.session.deck){
-      //   req.session.deck = [];
-      // }
+      const id = Number(req.params.id);
 
-      // const id = Number(req.params.id);
-      // const card = await dataMapper.getCard(id);
+      await dataMapper.removeDeck(id);
 
-      // const existingCard = req.session.deck.find(card => card.id === id);
+      const decks = await dataMapper.getAllDecks();
 
-      // if(!existingCard && req.session.deck.length < 10){
-      //   req.session.deck.push(card);
-      // }
-
-      // console.log(req.session, 'ADD CARD');
+      for (const deck of decks) {
+        req.session.decks.push(deck);
+      }
 
       res.redirect("/deck");
     } catch (error) {
       res.status(500).send(error.message);
     }
   },
+  addToInventory: async (req, res) => {
+    try {
+      if(!req.session.inventory){
+        req.session.inventory = [];
+      }
+
+      const id = Number(req.params.id);
+      const card = await dataMapper.getCard(id);
+
+      const existingCard = req.session.inventory.find(card => card.id === id);
+
+      if(!existingCard){
+        req.session.inventory.push(card);
+      }
+
+      dataMapper.addToInventory(id);
+
+      res.redirect("/deck");
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+  // addToDeck: async (req, res) => {
+  //   try {
+  //     // if(!req.session.inventory){
+  //     //   req.session.inventory = [];
+  //     // }
+
+  //     const id = Number(req.params.id);
+  //     const card = await dataMapper.getCard(id);
+
+  //     const existingCard = req.session.inventory.find(card => card.id === id);
+
+  //     if(!existingCard){
+  //       req.session.inventory.push(card);
+  //     }
+
+  //     dataMapper.addToInventory(id);
+
+  //     res.redirect("/deck");
+  //   } catch (error) {
+  //     res.status(500).send(error.message);
+  //   }
+  // }
   // TODO Filter cards for current deck,
   // TODO Filter by type,
   // TODO Filter by rank
-  // TODO Ajouter fonctio modifier nom deck
-  // TODO Ajouter fonctio supprimer deck
+  // TODO Ajouter fonctio ajout de cartes IDENTIQUES à l'inventaire
   // TODO Ajouter fonctio ajout de carte au deck
   // TODO Ajouter fonctio changer carte de deck
-  // TODO Ajouter cartes sans deck dans inventaire
 };
 
 module.exports = deckController;

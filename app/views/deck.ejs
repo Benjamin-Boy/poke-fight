@@ -8,8 +8,14 @@
           <li><h2>Cartes</h2></li>
           <% if(locals.decks){ %>
             <% for(let deck of locals.decks){ %>
-              <form action="/deck/add" method="POST">
-                <li><input type="text" name="name_<%= deck.id %>" value="<%= deck.name %>"></li>
+              <form action="/deck/update" method="POST">
+                <li>
+                  <input type="text" name="name_<%= deck.id %>" value="<%= deck.name %>" id="deckNameInput" readonly>
+                  <section class="add__deck__icons">
+                    <a href="#"><i class="fa-solid fa-pen" id="updateBtn"></i></a>
+                    <a href="/deck/remove/<%= deck.id %>"><i class="fa-solid fa-xmark" id="deleteBtn"></i></a>
+                  </section>
+                </li>
               </form>
             <% } %>
           <% } %>
@@ -20,7 +26,7 @@
       <article class="deck__cards" id="deckCardsPanel">
         <% cards.forEach((card) => { %>
           <article class="card__deck">
-            <a href="/card/<%= card.id %>">
+            <a href="#" id="addCardBtn">
               <h3 class="poke__name" id="cardName"><%= card.nom %></h3>
               <div class="card__deck__img">
                 <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
@@ -70,6 +76,15 @@
               </section>
               <section class="add__to__deck">
                 <i class="fa-solid fa-plus"></i>
+                <section class="card__deck__list">
+                  <ul>
+                    <% if(locals.decks){ %>
+                      <% for(let deck of locals.decks){ %>
+                        <li><a href="#"><%= deck.name %></a></li>
+                      <% } %>
+                    <% } %>
+                  </ul>
+                </section>
               </section>
               <h3 class="poke__numero">#<%= card.numero %></h3>
             </a>

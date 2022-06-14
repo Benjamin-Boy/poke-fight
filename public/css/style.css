@@ -146,6 +146,30 @@ nav li {
   gap: 30px;
 }
 
+.card__thumbnails a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/****** CARD SHOP ******/
+
+.add__todeck {
+  position: absolute;
+}
+
+.add__todeck i {
+  opacity: 0;
+  font-size: 5em;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+.card:hover .add__todeck i {
+  opacity: 1;
+}
+
 .container__thumbnails {
   justify-content: center;
 }
@@ -407,6 +431,7 @@ nav li {
   background-color: var(--secondary-color);
   flex-grow: 1;
   min-width: 250px;
+  max-width: 250px;
   padding: 20px 20px;
   /* border: 10px solid rgb(0, 0, 110); */
   overflow: auto;
@@ -420,6 +445,7 @@ nav li {
 }
 
 .deckList li {
+  position: relative;
   height: 50px;
   line-height: 50px;
   padding: 10px 15px;
@@ -436,13 +462,36 @@ nav li {
 }
 
 .deckList input {
-  /* height: 100%; */
+  cursor: pointer;
   width: 100%;
   outline: none;
   border: none;
   background-color: transparent;
   color: white;
   font-size: 1.2em;
+}
+
+.add__deck__icons{
+  position: absolute;
+  top: -15px;
+  right: 5px;
+  display: flex;
+  gap: 5px;
+  padding: 0;
+}
+
+.add__deck__icons a{
+  display: inline;
+}
+
+.add__deck__icons .fa-pen{
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.add__deck__icons .fa-xmark{
+  font-size: 1.1em;
+  cursor: pointer;
 }
 
 .add__deck {
@@ -454,7 +503,7 @@ nav li {
 .deck__filter {
   background-color: var(--secondary-color);
   flex-grow: 3;
-  /* max-width: 250px; */
+  max-width: 250px;
   min-width: 250px;
   padding: 20px 20px;
   color: white;
@@ -515,19 +564,16 @@ nav li {
   border: 1px solid rgb(255, 255, 255);
 }
 
-.cardType-active {
-  background-color: rgb(202, 199, 47);
-}
-
 /******* DECK CARDS LIST ********/
 
 .deck__cards {
   background-color: red;
-  /* flex-grow: 2; */
+  flex-grow: 1;
   overflow: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 10px;
   padding: 25px 25px;
 }
@@ -540,6 +586,7 @@ nav li {
 }
 
 .card__deck {
+  position: relative;
   background-color: #982c2c;
   cursor: pointer;
   width: 250px;
@@ -580,14 +627,14 @@ nav li {
   width: 100%;
 }
 
-.card__deck a {
+.card__deck > a {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .deck__types {
@@ -646,13 +693,27 @@ nav li {
 }
 
 .add__to__deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .add__to__deck i {
   opacity: 0;
   font-size: 5em;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+.card__deck__list{
+  opacity: 0;
+}
+
+.card__deck__list li:hover{
+  background-color: #999;
 }
 
 /******* LOGIN ********/
