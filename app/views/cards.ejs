@@ -1,35 +1,25 @@
 <%- include('./partials/header') %> 
-  <!-- <section id="filter" filter="<%#= filter %>">
-    <div class="filter__top">
-      <input type="text" name="pokeName" id="pokeName" placeholder="Enter a Pokemon name">
-      <a href="#" class="remove__filter"><h4>Effacer les filtres</h4></a>
-    </div>
-  </section> -->
+
   </header>
-  <main>
-    <!-- <section id="filter" filter="<%#= filter %>">
-      <div class="filter__bottom">
-        <%# for(const type of types){ %>
-          <form action="/type/<%#= type.name %>" method="get">
-            <input type="submit" name="type" value="<%#= type.name %>" class="pokeType" color="#<%#= type.color %>">
-          </form>
-        <%# } %>
-      </div>
-    </section> -->
+  <main class="card__shop__container">
 
     <div class="cards__container container__thumbnails">
       
       <% cards.forEach((card) => { %>
         <article class="card card__thumbnails">
           <a href="/card/<%= card.id %>">
+            <div class="card__level"><%= card.level %></div>
+            <div class="card__rank"><%= card.rank %></div>
             <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
             <section class="poke__name__numero">
               <h3 class="poke__numero">#<%= card.numero %></h3>
-              <h3 class="poke__name"><%= card.nom %></h3>
+              <h3 class="poke__name"  id="cardName"><%= card.nom %></h3>
             </section>
-            <!-- <section class="add__todeck">
-              <i class="fa-solid fa-plus"></i>
-            </section> -->
+            <% for(const type of card.type){ %>
+              <div class="deck__tooltip is-hidden">
+                <h3><%= type.name %></h3>
+              </div>
+            <% } %>
           </a>
         </article>
       <% }) %>
@@ -42,11 +32,18 @@
         <% cards.forEach((card) => { %>
           <li class="card card__list">
             <a href="/card/<%= card.id %>">
+              <div class="card__level"><%= card.level %></div>
+              <div class="card__rank"><%= card.rank %></div>
               <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
               <section class="poke__name__numero">
                 <h3 class="poke__numero">#<%= card.numero %></h3>
                 <h3 class="poke__name"><%= card.nom %></h3>
               </section>
+              <% for(const type of card.type){ %>
+                <div class="deck__tooltip is-hidden">
+                  <h3><%= type.name %></h3>
+                </div>
+              <% } %>
             </a>
           </li>
         <% }) %>
@@ -54,63 +51,14 @@
 
     </div>
 
-    <article class="deck__filter">
-      <h2>Filtres</h2>
+    <aside class="filters">
+      <%- include('./partials/filter') %>
+    </aside>
 
-      <hr>
-
-      <section class="card__name">
-        <input type="text" name="cardName" id="deckCardName" placeholder="Entrez un nom de Pokemon">
-      </section>
-
-      <hr>
-
-      <section class="card__level">
-        <div id="cardLevelSlider"></div>
-      </section>
-
-      <hr>
-
-      <section class="card__types">
-        <ul>
-          <li><h3>Acier</h3></li>
-          <li><h3>Combat</h3></li>
-          <li><h3>Dragon</h3></li>
-          <li><h3>Eau</h3></li>
-          <li><h3>Électrik</h3></li>
-          <li><h3>Feu</h3></li>
-          <li><h3>Glace</h3></li>
-          <li><h3>Insecte</h3></li>
-          <li><h3>Normal</h3></li>
-          <li><h3>Plante</h3></li>
-          <li><h3>Poison</h3></li>
-          <li><h3>Psy</h3></li>
-          <li><h3>Roche</h3></li>
-          <li><h3>Sol</h3></li>
-          <li><h3>Spectre</h3></li>
-          <li><h3>Ténèbres</h3></li>
-          <li><h3>Vol</h3></li>
-        </ul>
-      </section>
-
-      <hr>
-
-      <section class="card__rarity">
-        <ul>
-          <li><h3>Commune</h3></li>
-          <li><h3>Rare</h3></li>
-          <li><h3>Epique</h3></li>
-          <li><h3>Légendaire</h3></li>
-        </ul>
-      </section>
-
-      <section class="deck__filter__icon">
-        <img src="/icons/Poké_Ball_icon.svg" alt="poke_ball icon">
-      </section>
-      
-    </article>
   </main>
 
+
 <script src="/js/home.js"></script>
+<script src="/js/filtering.js"></script>
 
 <%- include('./partials/footer') %> 

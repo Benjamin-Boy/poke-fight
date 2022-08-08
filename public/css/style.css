@@ -1,13 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
 
+/*******************************************/
 /****** VARIABLES ******/
 
 :root {
   --main-color: #c14040;
-  --secondary-color: #202c64;
-  --main-text-color: white;
+  --secondary-color: #F9844A;
+  --secondary-hover-color: #a4745f;
+  --tertiary-color: #4D908E;
+  --tertiary-hover-color: #4D908E;
+  --fourth-color: #aa3838;
+  --fifth-color: #ccc;
+  --main-text-color: #fff;
+  --main-text-hover-color: #c14040;
+  --secondary-text-color: #c14040;
+  --secondary-text-hover-color: #F94144;
 }
 
+/*******************************************/
 /****** MAIN STYLE ******/
 
 body {
@@ -17,7 +27,6 @@ body {
 
 a {
   text-decoration: none;
-  color: white;
 }
 
 h1 {
@@ -34,148 +43,263 @@ h3 {
 
 .container {
   padding: 30px;
-  background-color: var(--main-color);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 25px;
   height: 100vh;
   overflow: auto;
+  transition: all 150ms ease;
 }
 
+.container--scroll{
+  padding: 0;
+}
+
+/*******************************************/
+/****** COLORS ******/
+
+.container{
+  background-color: var(--main-color);
+}
+
+/****** COLORS-HEADER ******/
+/****** COLORS-LOGIN ******/
+.container__body {
+  background-color: var(--main-color);
+}
+
+header,
+header a,
+.login__container,
+.login__container a,
+.signup__container {
+  background-color: var(--secondary-color);
+  color: var(--secondary-text-color);
+}
+
+.login__container a:hover{
+  color: var(--main-text-color);
+}
+
+.loginBtn,
+.signupBtn {
+  background-color: var(--tertiary-color);
+  color: var(--main-text-color);
+}
+
+.loginBtn:hover,
+.signupBtn:hover {
+  color: var(--secondary-color);
+}
+
+/****** COLORS-HOME ******/
+.game__link,
+.deck__link,
+.card__shop__link {
+  background-color: var(--fourth-color);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: var(--main-text-color);
+}
+
+.game__link:hover,
+.deck__link:hover,
+.card__shop__link:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/****** COLORS-FILTER ******/
+.cardType:hover,
+.cardRank:hover {
+  background-color: var(--secondary-color);
+}
+
+.cardType-active{
+  background-color: var(--main-color)
+}
+
+/****** COLORS-CARD-PAGE ******/
+.poke__infos{
+  background-color: var(--fourth-color);
+}
+
+.poke__name__title,
+.poke__details,
+.poke__details i,
+.back__to__main i{
+  color: var(--main-text-color);
+}
+
+.poke__to__deck i{
+  background-color: var(--main-color);
+}
+
+.poke__types .tooltip{
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.stat__slider__container{
+  background-color: var(--main-color);
+}
+
+.stat__slider{
+  background-color: var(--main-text-color);
+}
+
+/****** COLORS-DECK ******/
+.deckList,
+.deck__filter{
+  background-color: var(--tertiary-color);
+  color: var(--main-text-color);
+}
+
+.card,
+.card > a{
+  background-color: var(--fourth-color);
+  color: var(--main-text-color);
+}
+
+.card__deck:hover {
+  background-color: var(--main-color);
+}
+
+.deck-item,
+.deck-fixed,
+.deck__card {
+  border: 1px solid rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  transition: all 100ms ease-in-out;
+}
+
+.deckList i,
+.deckList input{
+  color: var(--main-text-color);
+  background-color: transparent;
+}
+
+.deckList li:hover,
+.deck__card:hover {
+  border: 1px solid #fff;
+  box-shadow: inset 0px 0px 25px 5px rgba(255, 255, 255, 0.6);
+}
+
+/****** COLORS-DECK-CARDS ******/
+.deck__cards *{
+  color: var(--main-text-color);
+}
+
+.card__top .deleteBtn:hover{
+  color: var(--secondary-color);
+}
+
+.deck__tooltip {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.card__deck__list{
+  background-color: rgba(249,	132,	74, 0.4)
+}
+
+.card__deck__list li:hover{
+  background-color: var(--secondary-color);
+}
+
+
+
+/****** COLORS-PROFILE ******/
+.profile__avatar img {
+  background-color: var(--secondary-color);
+}
+
+.profile__infos i:hover {
+  color: var(--main-text-color);
+}
+
+.profile__stats__container {
+  background-color: rgba(25, 25, 73, 0.367);
+}
+
+/****** COLORS-ADMIN ******/
+.tab {
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+.tab button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #ccc;
+}
+
+.tabcontent__container {
+  background-color: rgba(25, 25, 73, 0.367);
+}
+
+/*******************************************/
+/****** HEADER ******/
+
 header {
+  position: sticky;
+  top: 0;
   height: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 25px 25px;
-  background-color: #efe3e3;
   border-radius: 25px;
+  z-index: 5;
+  transition: all 150ms ease;
 }
 
-header a {
-  color: var(--main-color);
+.header--scroll{
+  border-radius: 0;
 }
 
 nav li {
-  color: var(--main-color);
   vertical-align: bottom;
   display: inline-block;
   margin: 0 5px;
 }
 
-.filter__top {
-  position: relative;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  transform-origin: bottom;
-  animation: filterTop 250ms forwards;
-}
-
-.filter__top input {
-  border-radius: 5px;
-  border: 1px solid var(--main-color);
-  height: 20px;
-  padding: 5px;
-}
-
-@keyframes filterTop {
-  0% {
-    transform: scaleY(0);
-  }
-  80% {
-    transform: scaleY(1.1);
-  }
-  100% {
-    transform: scaleY(1);
-  }
-}
-
-.show__filters {
-  cursor: pointer;
-  color: var(--main-color);
-}
-
-.filter__bottom {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  margin-bottom: 25px;
-  transform-origin: top;
-  animation: filterBottom 250ms forwards;
-}
-
-.filter__bottom a {
-  color: white;
-  transition: all 150ms ease;
-}
-
-.filter__bottom a:hover {
-  transform: scale(1.1);
-}
-
-@keyframes filterBottom {
-  0% {
-    transform: scaleY(0);
-  }
-  80% {
-    transform: scaleY(1.1);
-  }
-  100% {
-    transform: scaleY(1);
-  }
-}
-
-#pokeType {
-  background-color: green;
-  padding: 5px 20px;
-  border-radius: 5px;
-}
-
-.remove__filter {
-  position: absolute;
-  right: -150px;
-}
-
-.cards__container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-.card__thumbnails a {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
+/*******************************************/
 /****** CARD SHOP ******/
 
-.add__todeck {
-  position: absolute;
-}
+.card__shop__container{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 30px;
+  gap: 20px;
+} 
 
-.add__todeck i {
-  opacity: 0;
-  font-size: 5em;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-}
-
-.card:hover .add__todeck i {
-  opacity: 1;
+.filters .deck__filter{
+  position: sticky;
+  top: 95px;
 }
 
 .container__thumbnails {
-  justify-content: center;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
 }
 
 .container__list {
   display: none;
+  flex-grow: 1;
   justify-content: center;
   animation: cardsContainerList 150ms forwards;
 }
@@ -194,12 +318,10 @@ nav li {
 }
 
 .card {
-  background-color: #982c2c;
   transition: all 200ms ease-in-out;
 }
 
 .card:hover {
-  background-color: #e24242;
   transform: scale(1.1);
 }
 
@@ -250,14 +372,12 @@ nav li {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  color: #fff;
   z-index: 1;
   transition: all 150ms ease-in-out;
 }
 
 .poke__name__title,
 .back__to__main {
-  color: white;
   text-align: center;
 }
 
@@ -279,7 +399,6 @@ nav li {
   display: flex;
   justify-content: space-between;
   gap: 5em;
-  color: white;
 }
 
 .poke__img {
@@ -293,31 +412,19 @@ nav li {
 
 .poke__infos {
   position: relative;
-  background-color: #ab3838;
   border-radius: 10px;
   width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 40px 20px;
-  /* animation: loadPokeInfos 200ms forwards; */
 }
-
-/* @keyframes loadPokeInfos {
-  0%{
-    transform: scaleX(0.9);
-  }
-  100%{
-    transform: scaleX(1);
-  }
-} */
 
 .poke__to__deck i {
   position: absolute;
   right: 0;
   top: 0;
   font-size: 2rem;
-  background-color: #c14040;
   padding: 5px 50px;
   border: 2px solid rgba(255, 255, 255, 0);
   border-radius: 0 10px 0 50px;
@@ -353,7 +460,6 @@ nav li {
 
 .stat__slider__container {
   cursor: pointer;
-  background-color: #632b2b;
   width: 100%;
   height: 100%;
   border-radius: 5px;
@@ -365,7 +471,6 @@ nav li {
 }
 
 .stat__slider {
-  background-color: white;
   width: 20%;
   height: 100%;
   border-radius: 5px 0 0 5px;
@@ -379,7 +484,7 @@ nav li {
 
 .poke__type__container {
   cursor: pointer;
-  background-color: #632b2b;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -393,12 +498,10 @@ nav li {
 
 .poke__type__container:hover {
   border: 1px solid #ddd;
-  /* transform: scale(1.1); */
 }
 
 .tooltip {
   display: none;
-  background-color: rgba(0, 0, 0, 0.4);
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
@@ -414,6 +517,7 @@ nav li {
   width: 50px;
 }
 
+/*******************************************/
 /******* DECK ********/
 
 .deck__container {
@@ -425,14 +529,14 @@ nav li {
   border-radius: 20px;
 }
 
+/*******************************************/
 /******* DECK__LIST ********/
 
 .deckList {
-  background-color: var(--secondary-color);
   flex-grow: 1;
   min-width: 250px;
+  max-width: 250px;
   padding: 20px 20px;
-  /* border: 10px solid rgb(0, 0, 110); */
   overflow: auto;
 }
 
@@ -443,45 +547,81 @@ nav li {
   gap: 5px;
 }
 
-.deckList li {
+.deck-item,
+.deck-fixed,
+.deck__card {
+  position: relative;
   height: 50px;
   line-height: 50px;
   padding: 10px 15px;
-  color: white;
-  border: 1px solid black;
-  background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: all 100ms ease-in-out;
 }
 
-.deckList li:hover {
-  border: 1px solid white;
-  box-shadow: inset 0px 0px 25px 5px rgba(255, 255, 255, 0.6);
-}
-
 .deckList input {
-  /* height: 100%; */
+  cursor: pointer;
   width: 100%;
   outline: none;
   border: none;
-  background-color: transparent;
-  color: white;
   font-size: 1.2em;
+}
+
+.deck__card{
+  position: relative;
+  height: 30px;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 30px;
+}
+
+.deck__card__list{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.add__deck__icons{
+  position: absolute;
+  top: -15px;
+  right: 5px;
+  display: flex;
+  gap: 5px;
+  padding: 0;
+}
+
+.add__deck__icons a{
+  display: inline;
+}
+
+.add__deck__icons .fa-pen{
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.add__deck__icons .fa-xmark{
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.deck__icons{
+  position: absolute;
+  top: -5px;
+  right: 5px;
 }
 
 .add__deck {
   text-align: center;
 }
 
+/*******************************************/
 /******* DECK__FILTER ********/
 
 .deck__filter {
-  background-color: var(--secondary-color);
   flex-grow: 3;
-  /* max-width: 250px; */
+  max-width: 250px;
   min-width: 250px;
   padding: 20px 20px;
-  color: white;
 }
 
 .deck__filter hr {
@@ -500,16 +640,20 @@ nav li {
 
 .card__name input {
   height: 40px;
-  border: 1px solid var(--main-color);
+  border: none;
   border-radius: 5px;
-  background-color: #ddd;
   padding: 0 10px;
 }
 
-#cardLevelSlider {
+.cardLevel{
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 20px;
-  background-color: var(--main-color);
+}
+
+#cardLevelSlider {
+  display: flex;
+  gap: 10px;
 }
 
 .card__types ul {
@@ -518,8 +662,8 @@ nav li {
   flex-wrap: wrap;
 }
 
-.card__types li,
-.card__rarity li {
+.cardType,
+.cardRank {
   cursor: pointer;
   width: 30%;
   padding: 5px 40px 5px 5px;
@@ -528,30 +672,26 @@ nav li {
   transition: all 80ms ease-in-out;
 }
 
-.card__types li:hover,
-.card__rarity li:hover {
-  background-color: rgb(0, 118, 0);
+.card__rank,
+.card__level{
+  display: none;
 }
 
-.card__types li:active,
-.card__rarity li:active {
-  background-color: rgb(0, 118, 0);
-  border: 1px solid rgb(255, 255, 255);
-}
-
+/*******************************************/
 /******* DECK CARDS LIST ********/
 
 .deck__cards {
-  background-color: red;
-  /* flex-grow: 2; */
+  flex-grow: 1;
   overflow: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 10px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 45px;
   padding: 25px 25px;
 }
 
+/*******************************************/
 /******* DECK CARD ********/
 
 .poke__name,
@@ -560,54 +700,64 @@ nav li {
 }
 
 .card__deck {
-  background-color: #982c2c;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 250px;
+  height: 300px;
   padding: 10px;
   border-radius: 20px;
   transform: scale(1);
   perspective: 600px;
-  z-index: 2;
   border: 1px solid rgba(255, 255, 255, 0);
   transition: all 350ms ease-out;
   filter: brightness();
+  cursor: pointer;
 }
 
 .card__deck:hover {
   z-index: 10;
   border: 1px solid white;
-  background-color: #e24242;
   transform: scale(1.1);
-  /* transform: scale(1.1); */
 }
 
 .card__deck__img img {
+  position: absolute;
+  left: 0;
   width: 100%;
   transition: all 250ms ease-in-out;
   filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
+  z-index: -1;
 }
 
 .card__deck:hover .card__deck__img img {
-  transform: scale(1.25);
-  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.7));
+  transform: scale(1.1);
+  filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.7));
 }
 
-.card__deck:hover .add__to__deck i {
-  opacity: 1;
+.card__top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__top--dummy{
+  width: 10px;
+}
+
+.card__top .deleteBtn{
+  z-index: 5;
+}
+
+.card__middle{
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .deck__type__container img {
   width: 100%;
-}
-
-.card__deck a {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  pointer-events: none;
 }
 
 .deck__types {
@@ -616,8 +766,6 @@ nav li {
 }
 
 .deck__stats__left {
-  position: absolute;
-  left: 0;
   height: 90%;
   display: flex;
   flex-direction: column;
@@ -637,7 +785,6 @@ nav li {
 
 .deck__type__container {
   cursor: pointer;
-  background-color: #632b2b00;
   margin-bottom: 5px;
   height: 30px;
   width: 30px;
@@ -650,7 +797,6 @@ nav li {
 
 .deck__tooltip {
   display: none;
-  background-color: rgba(0, 0, 0, 0.4);
   padding: 2px 5px;
   border-radius: 5px;
   border: 1px solid #ddd;
@@ -665,20 +811,39 @@ nav li {
   display: block;
 }
 
+.card__deck:hover .add__to__deck i {
+  opacity: 1;
+}
+
 .add__to__deck {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 .add__to__deck i {
   opacity: 0;
   font-size: 5em;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  display: inline;
 }
 
+.card__deck__list{
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  opacity: 0;
+  border-radius: 5px;
+}
+
+/*******************************************/
 /******* LOGIN ********/
 
 .container__body {
-  background-color: #c14040;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -688,11 +853,9 @@ nav li {
 .login__container,
 .signup__container {
   text-align: center;
-  background-color: #efe3e3;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  color: var(--main-color);
   gap: 30px;
   border-radius: 25px;
   padding: 25px 25px;
@@ -704,7 +867,6 @@ nav li {
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  background-color: #efe3e3;
 }
 
 .main__login,
@@ -715,14 +877,6 @@ nav li {
   align-items: center;
   position: relative;
   gap: 20px;
-}
-
-.main__login a {
-  color: var(--main-color);
-}
-
-.main__login a:hover {
-  color: #aaa;
 }
 
 #loginForm,
@@ -740,16 +894,8 @@ nav li {
   cursor: pointer;
   border: none;
   font-size: 0.9em;
-  background-color: black;
-  color: #eee;
   border-radius: 5px;
   padding: 5px 10px;
-}
-
-.loginBtn:hover,
-.signupBtn:hover {
-  color: #c14040;
-  background-color: #bbb;
 }
 
 .login,
@@ -764,22 +910,21 @@ nav li {
 
 .login input,
 .signup input {
-  height: 25px;
+  height: 40px;
   padding-left: 10px;
   width: 100%;
+  border-radius: 5px;
+  border: none;
 }
 
+/*******************************************/
 /******* HOME ********/
 
 .main__home {
-  color: white;
   margin: 0 auto;
   display: grid;
   width: 70%;
   height: 80%;
-  /* grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr; */
-  /* grid-gap: 1rem; */
   grid-template-areas:
     "game game deck"
     "game game deck"
@@ -791,20 +936,16 @@ nav li {
 .deck__link,
 .card__shop__link {
   padding: 10px;
-  backdrop-filter: saturate(150%) blur(10px);
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  /* backdrop-filter: saturate(150%) blur(10px); */
   cursor: pointer;
   transition: all 150ms ease-in-out;
 }
 
-.game__link:hover,
+/* .game__link:hover,
 .deck__link:hover,
 .card__shop__link:hover {
-  backdrop-filter: saturate(150%) blur(50px);
-  background-color: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
+  backdrop-filter: saturate(0%) blur(50px);
+} */
 
 .game__link:hover h2,
 .deck__link:hover h2,
@@ -842,6 +983,7 @@ nav li {
   grid-area: cardShop;
 }
 
+/*******************************************/
 /******* PROFILE ********/
 
 .main__profile {
@@ -858,7 +1000,6 @@ nav li {
 }
 
 .profile__avatar img {
-  background-color: #982c2c2a;
   border-radius: 50%;
   width: 8em;
 }
@@ -869,9 +1010,13 @@ nav li {
   gap: 0.5em;
 }
 
+.profile__avatar img {
+  border-radius: 50%;
+  width: 8em;
+}
+
 .profile__infos i:hover {
   cursor: pointer;
-  color: white;
 }
 
 .profile__stats__container {
@@ -882,7 +1027,6 @@ nav li {
   padding: 30px;
   border-radius: 20px;
   height: 500px;
-  background-color: rgba(25, 25, 73, 0.367);
 }
 
 .games__stats,
@@ -900,38 +1044,21 @@ nav li {
   gap: 0.8em;
 }
 
-.played__cards,
-.played__types {
-  display: flex;
-  gap: 0.8em;
-}
-
-.played__cards img,
-.played__types img {
-  width: 40px;
-  background-color: rgba(255, 0, 0, 0.301);
-  padding: 10px;
-  border-radius: 50%;
-}
-
 .card__most__played img {
   width: 200px;
 }
 
+/*******************************************/
 /******** ADMIN ********/
 
 .main__admin {
   display: flex;
   flex-direction: column;
-  /* margin: 0 auto; */
 }
 
-/* Style the tab */
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
   border-radius: 20px 20px 0 0;
-  background-color: #f1f1f1;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -941,16 +1068,6 @@ nav li {
   cursor: pointer;
   padding: 14px 20px;
   transition: all 0.3s ease-in-out;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
 }
 
 /* Style the tab content */
@@ -964,5 +1081,15 @@ nav li {
   padding: 30px;
   border-radius: 0 0 20px 20px;
   height: 500px;
-  background-color: rgba(25, 25, 73, 0.367);
+}
+
+/*******************************************/
+/******** GLOBAL ********/
+
+.is-hidden{
+  display: none;
+}
+
+.drag-over {
+  border: dashed 3px red;
 }

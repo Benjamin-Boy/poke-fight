@@ -10,7 +10,7 @@
 -- Contenu de la table 'pokemon_card'
 --
 
-INSERT INTO "pokemon_card" ("id", "nom", "pv", "attaque", "defense", "attaque_spe", "defense_spe", "vitesse", "numero") VALUES
+INSERT INTO "card" ("id", "nom", "pv", "attaque", "defense", "attaque_spe", "defense_spe", "vitesse", "numero") VALUES
 (1209, 'Bulbizarre', 45, 49, 49, 65, 65, 45, 1),
 (1210, 'Herbizarre', 60, 62, 63, 80, 80, 60, 2),
 (1211, 'Florizarre', 80, 82, 83, 100, 100, 80, 3),
@@ -167,7 +167,7 @@ INSERT INTO "pokemon_card" ("id", "nom", "pv", "attaque", "defense", "attaque_sp
 -- Contenu de la table 'pokemon_rank'
 --
 
-INSERT INTO "pokemon_rank" ("name") VALUES
+INSERT INTO "card_rank" ("name") VALUES
 ('Common'),
 ('Rare'),
 ('Epic'),
@@ -177,7 +177,7 @@ INSERT INTO "pokemon_rank" ("name") VALUES
 -- Contenu de la table 'pokemon_type'
 --
 
-INSERT INTO "pokemon_type" ("id", "pokemon_numero", "type_id") VALUES
+INSERT INTO "card_type" ("id", "pokemon_numero", "type_id") VALUES
 (431, 1, 10),
 (432, 1, 11),
 (433, 2, 10),

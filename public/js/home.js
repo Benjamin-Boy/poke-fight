@@ -14,44 +14,55 @@ listToggleBtn.addEventListener('click', () => {
   }
 });
 
+const cardShopHeader = document.querySelector('header');
+const globalContainer = document.querySelector('.container');
+
+globalContainer.addEventListener('scroll', () => {
+  cardShopHeader.classList.toggle('header--scroll', globalContainer.scrollTop > 0);
+  globalContainer.classList.toggle('container--scroll', globalContainer.scrollTop > 0);
+});
+
+// cardShopHeader.classList.add('header--scroll', window.scrollY > 0);
+//   globalContainer.classList.add('container--scroll', window.scrollY > 0);
+
 // Affiche les filtres
-const showFilters = document.querySelector('.show__filters');
-const filterTop = document.querySelector('.filter__top');
-const filterBottom = document.querySelector('.filter__bottom');
-const allFilters = document.querySelectorAll('.pokeType');
-const activeFilters = document.querySelectorAll('#filter');
-const nameFilter = document.querySelector('#pokeName');
+// const showFilters = document.querySelector('.show__filters');
+// const filterTop = document.querySelector('.filter__top');
+// const filterBottom = document.querySelector('.filter__bottom');
+// const allFilters = document.querySelectorAll('.pokeType');
+// const activeFilters = document.querySelectorAll('#filter');
+// const nameFilter = document.querySelector('#pokeName');
 
-activeFilters.forEach(filter => {
-  let activeFilter = filter.getAttribute('filter');
+// activeFilters.forEach(filter => {
+//   let activeFilter = filter.getAttribute('filter');
 
-  if(activeFilter === 'true'){
-    filterTop.style.display = 'flex';
-    filterBottom.style.display = 'flex';
-  }
+//   if(activeFilter === 'true'){
+//     filterTop.style.display = 'flex';
+//     filterBottom.style.display = 'flex';
+//   }
 
-});
+// });
 
-showFilters.addEventListener('click', () => {
-  activeFilters.forEach(filter => {
-    let activeFilter = filter.getAttribute('filter');
+// showFilters.addEventListener('click', () => {
+//   activeFilters.forEach(filter => {
+//     let activeFilter = filter.getAttribute('filter');
 
-    if(activeFilter === 'true'){
-      filter.setAttribute('filter', 'false');
-      filterTop.style.display = 'none';
-      filterBottom.style.display = 'none';
-    }
-    else{
-      filter.setAttribute('filter', 'true');
-      filterTop.style.display = 'flex';
-      filterBottom.style.display = 'flex';
-    }
-  });
+//     if(activeFilter === 'true'){
+//       filter.setAttribute('filter', 'false');
+//       filterTop.style.display = 'none';
+//       filterBottom.style.display = 'none';
+//     }
+//     else{
+//       filter.setAttribute('filter', 'true');
+//       filterTop.style.display = 'flex';
+//       filterBottom.style.display = 'flex';
+//     }
+//   });
 
-});
+// });
 
-allFilters.forEach((type) => {
-  const color = type.getAttribute('color');
-  type.style.backgroundColor = color;
-});
+// allFilters.forEach((type) => {
+//   const color = type.getAttribute('color');
+//   type.style.backgroundColor = color;
+// });
 
