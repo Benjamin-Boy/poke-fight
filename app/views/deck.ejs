@@ -5,36 +5,57 @@
 
       <article class="deckList">
         <ul>
-          <li><h2>Cartes</h2></li>
+          <li class="deck-fixed"><h2>Inventaire</h2></li>
           <% if(locals.decks){ %>
             <% for(let deck of locals.decks){ %>
-              <form action="/deck/update" method="POST">
-                <li>
-                  <input type="text" name="name_<%= deck.id %>" value="<%= deck.name %>" id="deckNameInput" readonly>
-                  <section class="add__deck__icons">
-                    <a href="#"><i class="fa-solid fa-pen" id="updateBtn"></i></a>
-                    <a href="/deck/remove/<%= deck.id %>"><i class="fa-solid fa-xmark" id="deleteBtn"></i></a>
-                  </section>
+              <div class="deck">
+                <li class="deck-item">
+                  <form action="/deck/update" method="POST" class="deckForm">
+                    <input type="text" name="name_<%= deck.id %>" value="<%= deck.name %>" class="deckNameInput" readonly>
+                    <section class="add__deck__icons">
+                      <a href="#"><i class="fa-solid fa-pen updateBtn"></i></a>
+                      <a href="/deck/remove/<%= deck.id %>"><i class="fa-solid fa-xmark deleteBtn"></i></a>
+                    </section>
+                  </form>
+      
                 </li>
-              </form>
+                <section class="deck__card__list is-hidden">
+                  <% for(const card of cards){ %>
+                    <% if(card.deck_id === deck.id){ %>
+                      <div class="deck__card" draggable="true" id="draggable-<%= card.id %>"><%= card.nom %>
+                        <div class="deck__icons">
+                          <a href="/deck/remove/<%= card.id %>/<%= deck.id %>"><i class="fa-solid fa-xmark deleteBtn"></i></a>
+                        </div>
+                      </div>
+                    <% } %>
+                  <% } %>
+                </section>
+              </div>
             <% } %>
           <% } %>
-          <a href="/deck/add"><li class="add__deck"><h1><i class="fa-solid fa-plus"></i></h1></li></a>
+          <li class="deck-fixed add__deck"><a href="/deck/add"><h1><i class="fa-solid fa-plus"></i></h1></a></li>
         </ul>
       </article>
 
       <article class="deck__cards" id="deckCardsPanel">
         <% cards.forEach((card) => { %>
-          <article class="card__deck">
-            <a href="#" id="addCardBtn">
+          <article class="card card__deck">
+            <div class="card__level is-hidden"><%= card.level %></div>
+            <div class="card__rank is-hidden"><%= card.rank %></div>
+            <div class="card__deckId is-hidden"><%= card.deck_id %></div>
+            <div class="card__deck__img">
+              <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
+            </div>
+            <div class="card__top">
+              <div class="card__top--dummy"></div>
               <h3 class="poke__name" id="cardName"><%= card.nom %></h3>
-              <div class="card__deck__img">
-                <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
-              </div>
+              <a href="/deck/remove/card/<%= card.id %>"><i class="fa-solid fa-xmark deleteBtn"></i></a>
+            </div>
+            <div class="card__middle">
+              
               <section class="deck__stats__left">
-  
+
                 <section class="deck__types">
-  
                   <% for(const type of card.type){ %>
                     <div class="deck__type__container" color="#<%= type.color %>"> 
                       <img src="/icons/<%= type.name.toLowerCase() %>.svg" alt="<%= type.name.toLowerCase() %>">
@@ -43,7 +64,6 @@
                       </div>
                     </div>
                   <% } %>
-  
                 </section>
   
                 <section class="deck__stats">
@@ -72,81 +92,29 @@
                     <h4><%= card.vitesse %></h4>
                   </div>
                 </section>
-  
+
               </section>
+
               <section class="add__to__deck">
                 <i class="fa-solid fa-plus"></i>
                 <section class="card__deck__list">
                   <ul>
                     <% if(locals.decks){ %>
                       <% for(let deck of locals.decks){ %>
-                        <li><a href="#"><%= deck.name %></a></li>
+                        <li><a href="/deck/add/<%= card.id %>/<%= deck.id %>"><%= deck.name %></a></li>
                       <% } %>
                     <% } %>
                   </ul>
                 </section>
               </section>
-              <h3 class="poke__numero">#<%= card.numero %></h3>
-            </a>
+
+            </div>
+            <h3 class="poke__numero">#<%= card.numero %></h3>
           </article>
         <% }) %>
       </article>
 
-      <article class="deck__filter">
-        <h2>Filtres</h2>
-
-        <hr>
-
-        <section class="card__name">
-          <input type="text" name="cardName" id="deckCardName" placeholder="Entrez un nom de Pokemon">
-        </section>
-
-        <hr>
-
-        <section class="card__level">
-          <div id="cardLevelSlider"></div>
-        </section>
-
-        <hr>
-
-        <section class="card__types">
-          <ul>
-            <li><h3 class="cardType">Acier</h3></li>
-            <li><h3 class="cardType">Combat</h3></li>
-            <li><h3 class="cardType">Dragon</h3></li>
-            <li><h3 class="cardType">Eau</h3></li>
-            <li><h3 class="cardType">Electrik</h3></li>
-            <li><h3 class="cardType">Feu</h3></li>
-            <li><h3 class="cardType">Glace</h3></li>
-            <li><h3 class="cardType">Insecte</h3></li>
-            <li><h3 class="cardType">Normal</h3></li>
-            <li><h3 class="cardType">Plante</h3></li>
-            <li><h3 class="cardType">Poison</h3></li>
-            <li><h3 class="cardType">Psy</h3></li>
-            <li><h3 class="cardType">Roche</h3></li>
-            <li><h3 class="cardType">Sol</h3></li>
-            <li><h3 class="cardType">Spectre</h3></li>
-            <li><h3 class="cardType">Ténèbres</h3></li>
-            <li><h3 class="cardType">Vol</h3></li>
-          </ul>
-        </section>
-
-        <hr>
-
-        <section class="card__rarity">
-          <ul>
-            <li><h3>Commune</h3></li>
-            <li><h3>Rare</h3></li>
-            <li><h3>Epique</h3></li>
-            <li><h3>Légendaire</h3></li>
-          </ul>
-        </section>
-
-        <section class="deck__filter__icon">
-          <img src="/icons/Poké_Ball_icon.svg" alt="poke_ball icon">
-        </section>
-        
-      </article>
+      <%- include('./partials/filter') %>
 
       <!-- <section class="cardDetails">
         card details
@@ -161,6 +129,7 @@
 </div>
 </body>
 <script src="/js/deck.js"></script>
+<script src="/js/filtering.js"></script>
 </html>
 
 

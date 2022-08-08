@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS "users", "decks", "pokemon_card", "pokemon_rank", "pokemon_type", "type";
+DROP TABLE IF EXISTS "users", "deck", "card", "inventory", "card_rank", "card_type", "type";
 
 --
--- Structure de la table 'users'
+-- Structure de la table 'user'
 --
 
 CREATE TABLE "users" (
@@ -20,20 +20,20 @@ CREATE TABLE "users" (
 );
 
 --
--- Structure de la table 'decks'
+-- Structure de la table 'deck'
 --
 
-CREATE TABLE "decks" (
+CREATE TABLE "deck" (
   "id" SERIAL PRIMARY KEY,
   "name" varchar(255) NOT NULL,
   "user_id" int REFERENCES users(id)
 );
 
 --
--- Structure de la table 'pokemon'
+-- Structure de la table 'card'
 --
 
-CREATE TABLE "pokemon_card" (
+CREATE TABLE "card" (
   "id" int PRIMARY KEY,
   "nom" varchar(255) NOT NULL,
   "pv" int NOT NULL,
@@ -44,24 +44,48 @@ CREATE TABLE "pokemon_card" (
   "vitesse" int NOT NULL,
   "numero" int NOT NULL,
   "level" int NOT NULL DEFAULT 0 ,
-  "deck_id" int REFERENCES decks(id)
+  "rank" varchar(50) NOT NULL DEFAULT 'common',
+  "price" varchar(50) NOT NULL DEFAULT 5
 );
 
 --
--- Structure de la table 'pokemon_rank'
+-- Structure de la table 'inventory'
 --
 
-CREATE TABLE "pokemon_rank" (
+CREATE TABLE "inventory" (
+  "id" SERIAL PRIMARY KEY,
+  "nom" varchar(255) NOT NULL,
+  "pv" int NOT NULL,
+  "attaque" int NOT NULL,
+  "defense" int NOT NULL,
+  "attaque_spe" int NOT NULL,
+  "defense_spe" int NOT NULL,
+  "vitesse" int NOT NULL,
+  "numero" int NOT NULL,
+  "level" int NOT NULL,
+  "rank" varchar(50) NOT NULL DEFAULT 'common',
+  "price" varchar(50) NOT NULL DEFAULT 5,
+  "xp" varchar(50) NOT NULL DEFAULT 0,
+  "deck_id" int REFERENCES deck(id),
+  "user_id" int REFERENCES users(id),
+  "card_id" int REFERENCES "card"(id)
+);
+
+--
+-- Structure de la table 'card_rank'
+--
+
+CREATE TABLE "card_rank" (
   "id" SERIAL PRIMARY KEY,
   "name" varchar(255) NOT NULL,
-  "card_id" int REFERENCES pokemon_card(id)
+  "card_id" int REFERENCES card(id)
 );
 
 --
--- Structure de la table 'pokemon_type'
+-- Structure de la table 'card_type'
 --
 
-CREATE TABLE "pokemon_type" (
+CREATE TABLE "card_type" (
   "id" int NOT NULL,
   "pokemon_numero" int NOT NULL,
   "type_id" int NOT NULL

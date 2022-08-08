@@ -1,44 +1,33 @@
 const dataMapper = require("../dataMapper");
+const Card = require('../models/Card');
 
 const deckController = {
   deckPage: async (req, res) => {
     try {
-      // const cards = await dataMapper.getCardsList();
-      const cards = await dataMapper.getInventory();
-      const decks = await dataMapper.getAllDecks();
+      const userId = req.session.user.id;
 
-      // for(const deck of decks){
-      //   req.session.decks.push(deck);
-      // }
+      const cards = await dataMapper.getCardsFromInventory(userId);
+      const decks = await dataMapper.getAllDecks(userId);
 
-      // if(!req.session.deck){
-      //   req.session.deck = [];
-      // }
-
-      // console.log(res.session, 'DECK PAGE');
-
-      res.render("deck", { cards, decks, filter: req.session.filter });
+      res.render("deck", { cards, decks });
     } catch (error) {
       res.status(500).send(error.message);
     }
   },
+
   createDeck: async (req, res) => {
     try {
-      req.session.decks = [];
-
-      dataMapper.createNewDeck({ name: "Nouveau deck" });
-
-      const decks = await dataMapper.getAllDecks();
-
-      for (const deck of decks) {
-        req.session.decks.push(deck);
-      }
+      dataMapper.createNewDeck({
+        name: "Nouveau deck",
+        user_id: req.session.user.id
+      });
 
       res.redirect("/deck");
     } catch (error) {
       res.status(500).send(error.message);
     }
   },
+
   updateDeck: async (req, res) => {
     try {
       const propertyName = Object.keys(req.body);
@@ -59,73 +48,147 @@ const deckController = {
       res.status(500).send(error.message);
     }
   },
+
   removeDeck: async (req, res) => {
     try {
-      const id = Number(req.params.id);
+      const deckId = Number(req.params.deckId);
+      
+      const cards = await dataMapper.getCardsFromDeck(deckId);
+      
+      cards.forEach(card => {
+        dataMapper.removeCardFromDeck(card.id);
+      });
 
-      await dataMapper.removeDeck(id);
-
-      const decks = await dataMapper.getAllDecks();
-
-      for (const deck of decks) {
-        req.session.decks.push(deck);
-      }
+      await dataMapper.removeDeck(deckId);
 
       res.redirect("/deck");
     } catch (error) {
       res.status(500).send(error.message);
     }
   },
-  addToInventory: async (req, res) => {
+
+  addCardToInventory: async (req, res) => {
     try {
-      if(!req.session.inventory){
-        req.session.inventory = [];
-      }
-
+      // On récupère l'id de la carte cliquée
       const id = Number(req.params.id);
-      const card = await dataMapper.getCard(id);
 
-      const existingCard = req.session.inventory.find(card => card.id === id);
+      const cards = await dataMapper.getCardsList();
+
+      const cardFound = cards.find(card => card.id === id);
+
+      const newCard = new Card(cardFound.nom, cardFound.numero);
+
+      newCard.generateRank();
+      newCard.generateHp(cardFound.pv);
+      newCard.generateAttack(cardFound.attaque);
+      newCard.generateDefense(cardFound.defense);
+      newCard.generateAttackSpe(cardFound.attaque_spe);
+      newCard.generateDefenseSpe(cardFound.defense_spe);
+      newCard.generateSpeed(cardFound.vitesse);
+      newCard.generateLevel(cardFound.level);
+      newCard.generatePrice(cardFound.price);
+
+      dataMapper.addCardToInventory({
+        nom: newCard.name,
+        pv: newCard.hp,
+        attaque: newCard.attack,
+        defense: newCard.defense,
+        attaque_spe: newCard.attack_spe,
+        defense_spe: newCard.defense_spe,
+        vitesse: newCard.speed,
+        numero: newCard.numero,
+        level: newCard.level,
+        rank: newCard.rank,
+        user_id: req.session.user.id
+      });
+
+      // On envoie la carte dans la table 'inventory' de la base de données si elle n'est pas déjà présente
+      // if (!cardFound) {
+      //   dataMapper.addCardToInventory(nom, pv, attaque, defense, attaque_spe, defense_spe, vitesse, numero, level, rank);
+      // }
+
+      res.redirect("/deck");
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+
+  removeCardFromInventory: async (req, res) => {
+    try {
+      const cardId = Number(req.params.cardId);
+      // const deckId = Number(req.params.deckId);
+
+      // console.log(cardId);
+
+      // const cards = await dataMapper.getCardsFromDeck(deckId);
+
+      // const existingCard = cards.find(card => card.id === cardId);
+
+      // console.log(existingCard);
+
+      // if(existingCard){
+      //   dataMapper.removeCardFromDeck(cardId);
+      // }
+
+      await dataMapper.removeCardFromInventory(cardId);
+
+      return res.redirect("/deck");
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+
+  addCardToDeck: async (req, res) => {
+    try {
+      const cardId = Number(req.params.cardId);
+      const deckId = Number(req.params.deckId);
+
+      const cards = await dataMapper.getCardsFromDeck(deckId);
+
+      const existingCard = cards.find(card => card.id === cardId);
 
       if(!existingCard){
-        req.session.inventory.push(card);
+        await dataMapper.addCardToDeck(cardId, deckId);
       }
-
-      dataMapper.addToInventory(id);
 
       res.redirect("/deck");
     } catch (error) {
       res.status(500).send(error.message);
     }
   },
-  // addToDeck: async (req, res) => {
-  //   try {
-  //     // if(!req.session.inventory){
-  //     //   req.session.inventory = [];
-  //     // }
 
-  //     const id = Number(req.params.id);
-  //     const card = await dataMapper.getCard(id);
+  removeCardFromDeck: async (req, res) => {
+    try {
+      const cardId = Number(req.params.cardId);
+      const deckId = Number(req.params.deckId);
 
-  //     const existingCard = req.session.inventory.find(card => card.id === id);
+      const cards = await dataMapper.getCardsFromDeck(deckId);
 
-  //     if(!existingCard){
-  //       req.session.inventory.push(card);
-  //     }
+      const existingCard = cards.find(card => card.id === cardId);
 
-  //     dataMapper.addToInventory(id);
+      if(existingCard){
+        await dataMapper.removeCardFromDeck(cardId);
+      }
 
-  //     res.redirect("/deck");
-  //   } catch (error) {
-  //     res.status(500).send(error.message);
-  //   }
+      res.redirect("/deck");
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  },
+
+  // handleCardDragNDrop: () => {
+
   // }
-  // TODO Filter cards for current deck,
-  // TODO Filter by type,
-  // TODO Filter by rank
-  // TODO Ajouter fonctio ajout de cartes IDENTIQUES à l'inventaire
-  // TODO Ajouter fonctio ajout de carte au deck
-  // TODO Ajouter fonctio changer carte de deck
+
+  
+  // TODO Filtrer carte par niveau de carte
+
+  // TODO Afficher détails de la carte quand on clique sur carte dans deck
+  // TODO Ajouter fonctio changer carte de deck avec drag and drop
+  // TODO Mettre en place système de devise et paiement cartes (Pokédollar)
+  
+  // TODO Mettre en place le jeu de deck building
+
 };
 
 module.exports = deckController;

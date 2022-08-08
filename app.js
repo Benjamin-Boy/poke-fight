@@ -19,9 +19,9 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-  if(req.session.decks) res.locals.decks = req.session.decks;
+  // if(req.session.decks) res.locals.decks = req.session.decks;
   if(req.session.user) res.locals.user = req.session.user;
-  if(!req.session.filter) req.session.filter = 'false';
+  // if(!req.session.filter) req.session.filter = 'false';
 
   next();
 });

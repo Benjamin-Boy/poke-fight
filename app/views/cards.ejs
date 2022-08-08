@@ -1,32 +1,25 @@
 <%- include('./partials/header') %> 
-  <section id="filter" filter="<%= filter %>">
-    <div class="filter__top">
-      <input type="text" name="pokeName" id="pokeName" placeholder="Enter a Pokemon name">
-      <a href="#" class="remove__filter"><h4>Effacer les filtres</h4></a>
-    </div>
-  </section>
+
   </header>
-  <main>
-    <section id="filter" filter="<%= filter %>">
-      <div class="filter__bottom">
-        <% for(const type of types){ %>
-          <form action="/type/<%= type.name %>" method="get">
-            <input type="submit" name="type" value="<%= type.name %>" class="pokeType" color="#<%= type.color %>">
-          </form>
-        <% } %>
-      </div>
-    </section>
+  <main class="card__shop__container">
 
     <div class="cards__container container__thumbnails">
       
       <% cards.forEach((card) => { %>
         <article class="card card__thumbnails">
           <a href="/card/<%= card.id %>">
+            <div class="card__level"><%= card.level %></div>
+            <div class="card__rank"><%= card.rank %></div>
             <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
             <section class="poke__name__numero">
               <h3 class="poke__numero">#<%= card.numero %></h3>
-              <h3 class="poke__name"><%= card.nom %></h3>
+              <h3 class="poke__name"  id="cardName"><%= card.nom %></h3>
             </section>
+            <% for(const type of card.type){ %>
+              <div class="deck__tooltip is-hidden">
+                <h3><%= type.name %></h3>
+              </div>
+            <% } %>
           </a>
         </article>
       <% }) %>
@@ -39,19 +32,33 @@
         <% cards.forEach((card) => { %>
           <li class="card card__list">
             <a href="/card/<%= card.id %>">
+              <div class="card__level"><%= card.level %></div>
+              <div class="card__rank"><%= card.rank %></div>
               <img src="/img/<%= card.numero %>.png" alt="<%= card.nom %>">
               <section class="poke__name__numero">
                 <h3 class="poke__numero">#<%= card.numero %></h3>
                 <h3 class="poke__name"><%= card.nom %></h3>
               </section>
+              <% for(const type of card.type){ %>
+                <div class="deck__tooltip is-hidden">
+                  <h3><%= type.name %></h3>
+                </div>
+              <% } %>
             </a>
           </li>
         <% }) %>
       </ul>
 
     </div>
+
+    <aside class="filters">
+      <%- include('./partials/filter') %>
+    </aside>
+
   </main>
 
+
 <script src="/js/home.js"></script>
+<script src="/js/filtering.js"></script>
 
 <%- include('./partials/footer') %> 
