@@ -1,5 +1,5 @@
 const dataMapper = require("../dataMapper");
-const Card = require('../models/Card');
+const Card = require('../models/card');
 
 const deckController = {
   deckPage: async (req, res) => {
