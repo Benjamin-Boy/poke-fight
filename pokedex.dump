@@ -1,0 +1,825 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.2
+-- Dumped by pg_dump version 14.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: card; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.card (
+    id integer NOT NULL,
+    nom character varying(255) NOT NULL,
+    pv integer NOT NULL,
+    attaque integer NOT NULL,
+    defense integer NOT NULL,
+    attaque_spe integer NOT NULL,
+    defense_spe integer NOT NULL,
+    vitesse integer NOT NULL,
+    numero integer NOT NULL,
+    level integer DEFAULT 0 NOT NULL,
+    rank character varying(50) DEFAULT 'common'::character varying NOT NULL
+);
+
+
+ALTER TABLE public.card OWNER TO postgres;
+
+--
+-- Name: card_rank; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.card_rank (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    card_id integer
+);
+
+
+ALTER TABLE public.card_rank OWNER TO postgres;
+
+--
+-- Name: card_rank_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.card_rank_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.card_rank_id_seq OWNER TO postgres;
+
+--
+-- Name: card_rank_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.card_rank_id_seq OWNED BY public.card_rank.id;
+
+
+--
+-- Name: card_type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.card_type (
+    id integer NOT NULL,
+    pokemon_numero integer NOT NULL,
+    type_id integer NOT NULL
+);
+
+
+ALTER TABLE public.card_type OWNER TO postgres;
+
+--
+-- Name: deck; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.deck (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    user_id integer
+);
+
+
+ALTER TABLE public.deck OWNER TO postgres;
+
+--
+-- Name: deck_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.deck_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.deck_id_seq OWNER TO postgres;
+
+--
+-- Name: deck_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.deck_id_seq OWNED BY public.deck.id;
+
+
+--
+-- Name: inventory; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.inventory (
+    id integer NOT NULL,
+    nom character varying(255) NOT NULL,
+    pv integer NOT NULL,
+    attaque integer NOT NULL,
+    defense integer NOT NULL,
+    attaque_spe integer NOT NULL,
+    defense_spe integer NOT NULL,
+    vitesse integer NOT NULL,
+    numero integer NOT NULL,
+    level integer NOT NULL,
+    rank character varying(50) DEFAULT 'common'::character varying NOT NULL,
+    deck_id integer,
+    user_id integer,
+    card_id integer
+);
+
+
+ALTER TABLE public.inventory OWNER TO postgres;
+
+--
+-- Name: inventory_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.inventory_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.inventory_id_seq OWNER TO postgres;
+
+--
+-- Name: inventory_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.inventory_id_seq OWNED BY public.inventory.id;
+
+
+--
+-- Name: type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.type (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    color character varying(6) NOT NULL
+);
+
+
+ALTER TABLE public.type OWNER TO postgres;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    role character varying(255) DEFAULT 'player'::character varying NOT NULL,
+    parties integer DEFAULT 0 NOT NULL,
+    victories integer DEFAULT 0 NOT NULL,
+    victory_ratio integer DEFAULT 0 NOT NULL,
+    cards_owned integer DEFAULT 0 NOT NULL,
+    cards_bought integer DEFAULT 0 NOT NULL,
+    cards_level integer DEFAULT 0 NOT NULL,
+    card_most_played integer
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: card_rank id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.card_rank ALTER COLUMN id SET DEFAULT nextval('public.card_rank_id_seq'::regclass);
+
+
+--
+-- Name: deck id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deck ALTER COLUMN id SET DEFAULT nextval('public.deck_id_seq'::regclass);
+
+
+--
+-- Name: inventory id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inventory ALTER COLUMN id SET DEFAULT nextval('public.inventory_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: card; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.card (id, nom, pv, attaque, defense, attaque_spe, defense_spe, vitesse, numero, level, rank) FROM stdin;
+1220	Papilusion	60	45	50	80	80	70	12	0	commune
+1221	Aspicot	40	35	30	20	20	50	13	0	commune
+1222	Coconfort	45	25	50	25	25	35	14	0	commune
+1223	Dardargnan	65	80	40	45	80	75	15	0	commune
+1224	Roucool	40	45	40	35	35	56	16	0	commune
+1225	Roucoups	63	60	55	50	50	71	17	0	commune
+1226	Roucarnage	83	80	75	70	70	91	18	0	commune
+1227	Rattata	30	56	35	25	35	72	19	0	commune
+1228	Rattatac	55	81	60	50	70	97	20	0	commune
+1229	Piafabec	40	60	30	31	31	70	21	0	commune
+1230	Rapasdepic	65	90	65	61	61	100	22	0	commune
+1231	Abo	35	60	44	40	54	55	23	0	commune
+1232	Arbok	60	85	69	65	79	80	24	0	commune
+1233	Pikachu	35	55	30	50	40	90	25	0	commune
+1234	Raichu	60	90	55	90	80	100	26	0	commune
+1235	Sabelette	50	75	85	20	30	40	27	0	commune
+1236	Sablaireau	75	100	110	45	55	65	28	0	commune
+1237	Nidoran F	55	47	52	40	40	41	29	0	commune
+1238	Nidorina	70	62	67	55	55	56	30	0	commune
+1239	Nidoqueen	90	82	87	75	85	76	31	0	commune
+1240	Nidoran M	46	57	40	40	40	50	32	0	commune
+1241	Nidorino	61	72	57	55	55	65	33	0	commune
+1242	Nidoking	81	92	77	85	75	85	34	0	commune
+1243	Melofee	70	45	48	60	65	35	35	0	commune
+1244	Melodelfe	95	70	73	85	90	60	36	0	commune
+1245	Goupix	38	41	40	50	65	65	37	0	commune
+1246	Feunard	73	76	75	81	100	100	38	0	commune
+1247	Rondoudou	115	45	20	45	25	20	39	0	commune
+1248	Grodoudou	140	70	45	75	50	45	40	0	commune
+1249	Nosferapti	40	45	35	30	40	55	41	0	commune
+1250	Nosferalto	75	80	70	65	75	90	42	0	commune
+1251	Mystherbe	45	50	55	75	65	30	43	0	commune
+1209	Bulbizarre	45	49	49	65	65	45	1	0	rare
+1210	Herbizarre	60	62	63	80	80	60	2	0	rare
+1211	Florizarre	80	82	83	100	100	80	3	0	rare
+1212	Salameche	39	52	43	60	50	65	4	0	rare
+1213	Reptincel	58	64	58	80	65	80	5	0	rare
+1214	Dracaufeu	78	84	78	109	85	100	6	0	rare
+1215	Carapuce	44	48	65	50	64	43	7	0	rare
+1216	Carabaffe	59	63	80	65	80	58	8	0	rare
+1217	Tortank	79	83	100	85	105	78	9	0	rare
+1218	Chenipan	45	30	35	20	20	45	10	0	rare
+1219	Chrysacier	50	20	55	25	25	30	11	0	rare
+1252	Ortide	60	65	70	85	75	40	44	0	commune
+1253	Rafflesia	75	80	85	100	90	50	45	0	commune
+1254	Paras	35	70	55	45	55	25	46	0	commune
+1255	Parasect	60	95	80	60	80	30	47	0	commune
+1256	Mimitoss	60	55	50	40	55	45	48	0	commune
+1257	Aeromite	70	65	60	90	75	90	49	0	commune
+1258	Taupiqueur	10	55	25	35	45	95	50	0	commune
+1259	Triopikeur	35	80	50	50	70	120	51	0	commune
+1260	Miaouss	40	45	35	40	40	90	52	0	commune
+1261	Persian	65	70	60	65	65	115	53	0	commune
+1262	Psykokwak	50	52	48	65	50	55	54	0	commune
+1263	Akwakwak	80	82	78	95	80	85	55	0	commune
+1264	Ferosinge	40	80	35	35	45	70	56	0	commune
+1265	Colossinge	65	105	60	60	70	95	57	0	commune
+1266	Caninos	55	70	45	70	50	60	58	0	commune
+1267	Arcanin	90	110	80	100	80	95	59	0	commune
+1268	Ptitard	40	50	40	40	40	90	60	0	commune
+1269	Tetarte	65	65	65	50	50	90	61	0	commune
+1270	Tartard	90	85	95	70	90	70	62	0	commune
+1271	Abra	25	20	15	105	55	90	63	0	commune
+1272	Kadabra	40	35	30	120	70	105	64	0	commune
+1273	Alakazam	55	50	45	135	85	120	65	0	commune
+1274	Machoc	70	80	50	35	35	35	66	0	commune
+1275	Machopeur	80	100	70	50	60	45	67	0	commune
+1276	Mackogneur	90	130	80	65	85	55	68	0	commune
+1277	Chetiflor	50	75	35	70	30	40	69	0	commune
+1278	Boustiflor	65	90	50	85	45	55	70	0	commune
+1279	Empiflor	80	105	65	100	60	70	71	0	commune
+1280	Tentacool	40	40	35	50	100	70	72	0	commune
+1281	Tentacruel	80	70	65	80	120	100	73	0	commune
+1282	Racaillou	40	80	100	30	30	20	74	0	commune
+1283	Gravalanch	55	95	115	45	45	35	75	0	commune
+1284	Grolem	80	110	130	55	65	45	76	0	commune
+1285	Ponyta	50	85	55	65	65	90	77	0	commune
+1286	Galopa	65	100	70	80	80	105	78	0	commune
+1287	Ramoloss	90	65	65	40	40	15	79	0	commune
+1288	Flagadoss	95	75	110	100	80	30	80	0	commune
+1289	Magneti	25	35	70	95	55	45	81	0	commune
+1290	Magneton	50	60	95	120	70	70	82	0	commune
+1291	Canarticho	52	65	55	58	62	60	83	0	commune
+1292	Doduo	35	85	45	35	35	75	84	0	commune
+1293	Dodrio	60	110	70	60	60	100	85	0	commune
+1294	Otaria	65	45	55	45	70	45	86	0	commune
+1295	Lamantine	90	70	80	70	95	70	87	0	commune
+1296	Tadmorv	80	80	50	40	50	25	88	0	commune
+1297	Grotadmorv	105	105	75	65	100	50	89	0	commune
+1298	Kokiyas	30	65	100	45	25	40	90	0	commune
+1299	Crustabri	50	95	180	85	45	70	91	0	commune
+1300	Fantominus	30	35	30	100	35	80	92	0	commune
+1301	Spectrum	45	50	45	115	55	95	93	0	commune
+1302	Ectoplasma	60	65	60	130	75	110	94	0	commune
+1303	Onix	35	45	160	30	45	70	95	0	commune
+1304	Soporifik	60	48	45	43	90	42	96	0	commune
+1305	Hypnomade	85	73	70	73	115	67	97	0	commune
+1306	Krabby	30	105	90	25	25	50	98	0	commune
+1307	Krabboss	55	130	115	50	50	75	99	0	commune
+1308	Voltorbe	40	30	50	55	55	100	100	0	commune
+1309	Electrode	60	50	70	80	80	140	101	0	commune
+1310	Noeunoeuf	60	40	80	60	45	40	102	0	commune
+1311	Noadkoko	95	95	85	125	65	55	103	0	commune
+1312	Osselait	50	50	95	40	50	35	104	0	commune
+1313	Ossatueur	60	80	110	50	80	45	105	0	commune
+1314	Kicklee	50	120	53	35	110	87	106	0	commune
+1315	Tygnon	50	105	79	35	110	76	107	0	commune
+1316	Excelangue	90	55	75	60	75	30	108	0	commune
+1317	Smogo	40	65	95	60	45	35	109	0	commune
+1318	Smogogo	65	90	120	85	70	60	110	0	commune
+1319	Rhinocorne	80	85	95	30	30	25	111	0	commune
+1320	Rhinoferos	105	130	120	45	45	40	112	0	commune
+1321	Leveinard	250	5	5	35	105	50	113	0	commune
+1322	Saquedeneu	65	55	115	100	40	60	114	0	commune
+1323	Kangourex	105	95	80	40	80	90	115	0	commune
+1324	Hypotrempe	30	40	70	70	25	60	116	0	commune
+1325	Hypocean	55	65	95	95	45	85	117	0	commune
+1326	Poissirene	45	67	60	35	50	63	118	0	commune
+1327	Poissoroy	80	92	65	65	80	68	119	0	commune
+1328	Stari	30	45	55	70	55	85	120	0	commune
+1329	Staross	60	75	85	100	85	115	121	0	commune
+1330	M.Mime	40	45	65	100	120	90	122	0	commune
+1331	Insecateur	70	110	80	55	80	105	123	0	commune
+1332	Lippoutou	65	50	35	115	95	95	124	0	commune
+1333	Elektek	65	83	57	95	85	105	125	0	commune
+1334	Magmar	65	95	57	100	85	93	126	0	commune
+1335	Scarabrute	65	125	100	55	70	85	127	0	commune
+1336	Tauros	75	100	95	40	70	110	128	0	commune
+1337	Magicarpe	20	10	55	15	20	80	129	0	commune
+1338	Leviator	95	125	79	60	100	81	130	0	commune
+1339	Lokhlass	130	85	80	85	95	60	131	0	commune
+1340	Metamorph	48	48	48	48	48	48	132	0	commune
+1341	Evoli	55	55	50	45	65	55	133	0	commune
+1342	Aquali	130	65	60	110	95	65	134	0	commune
+1343	Voltali	65	65	60	110	95	130	135	0	commune
+1344	Pyroli	65	130	60	95	110	65	136	0	commune
+1345	Porygon	65	60	70	85	75	40	137	0	commune
+1346	Amonita	35	40	100	90	55	35	138	0	commune
+1347	Amonistar	70	60	125	115	70	55	139	0	commune
+1348	Kabuto	30	80	90	55	45	55	140	0	commune
+1349	Kabutops	60	115	105	65	70	80	141	0	commune
+1350	Ptera	80	105	65	60	75	130	142	0	commune
+1351	Ronflex	160	110	65	65	110	30	143	0	commune
+1352	Artikodin	90	85	100	95	125	85	144	0	commune
+1353	Electhor	90	90	85	125	90	100	145	0	commune
+1354	Sulfura	90	100	90	125	85	90	146	0	commune
+1355	Minidraco	41	64	45	50	50	50	147	0	commune
+1356	Draco	61	84	65	70	70	70	148	0	commune
+1357	Dracolosse	91	134	95	100	100	80	149	0	commune
+1358	Mewtwo	106	110	90	154	90	130	150	0	commune
+1359	Mew	100	100	100	100	100	100	151	0	commune
+\.
+
+
+--
+-- Data for Name: card_rank; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.card_rank (id, name, card_id) FROM stdin;
+1	Common	\N
+2	Rare	\N
+3	Epic	\N
+4	Legendary	\N
+\.
+
+
+--
+-- Data for Name: card_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.card_type (id, pokemon_numero, type_id) FROM stdin;
+431	1	10
+432	1	11
+433	2	10
+434	2	11
+435	3	10
+436	3	11
+437	4	6
+438	5	6
+439	6	6
+440	6	17
+441	7	4
+442	8	4
+443	9	4
+444	10	8
+445	11	8
+446	12	8
+447	12	17
+448	13	8
+449	13	11
+450	14	8
+451	14	11
+452	15	8
+453	15	11
+454	16	9
+455	16	17
+456	17	9
+457	17	17
+458	18	9
+459	18	17
+460	19	9
+461	20	9
+462	21	9
+463	21	17
+464	22	9
+465	22	17
+466	23	11
+467	24	11
+468	25	5
+469	26	5
+470	27	14
+471	28	14
+472	29	11
+473	30	11
+474	31	11
+475	31	14
+476	32	11
+477	33	11
+478	34	11
+479	34	14
+480	35	9
+481	36	9
+482	37	6
+483	38	6
+484	39	9
+485	40	9
+486	41	11
+487	41	17
+488	42	11
+489	42	17
+490	43	10
+491	43	11
+492	44	10
+493	44	11
+494	45	10
+495	45	11
+496	46	8
+497	46	10
+498	47	8
+499	47	10
+500	48	8
+501	48	11
+502	49	8
+503	49	11
+504	50	14
+505	51	14
+506	52	9
+507	53	9
+508	54	4
+509	55	4
+510	56	2
+511	57	2
+512	58	6
+513	59	6
+514	60	4
+515	61	4
+516	62	4
+517	62	2
+518	63	12
+519	64	12
+520	65	12
+521	66	2
+522	67	2
+523	68	2
+524	69	10
+525	69	11
+526	70	10
+527	70	11
+528	71	10
+529	71	11
+530	72	4
+531	72	11
+532	73	4
+533	73	11
+534	74	13
+535	74	14
+536	75	13
+537	75	14
+538	76	13
+539	76	14
+540	77	6
+541	78	6
+542	79	4
+543	79	12
+544	80	4
+545	80	12
+546	81	5
+547	81	1
+548	82	5
+549	82	1
+550	83	9
+551	83	17
+552	84	9
+553	84	17
+554	85	9
+555	85	17
+556	86	4
+557	87	4
+558	87	7
+559	88	11
+560	89	11
+561	90	4
+562	91	4
+563	91	7
+564	92	15
+565	92	11
+566	93	15
+567	93	11
+568	94	15
+569	94	11
+570	95	13
+571	95	14
+572	96	12
+573	97	12
+574	98	4
+575	99	4
+576	100	5
+577	101	5
+578	102	10
+579	102	12
+580	103	10
+581	103	12
+582	104	14
+583	105	14
+584	106	2
+585	107	2
+586	108	9
+587	109	11
+588	110	11
+589	111	14
+590	111	13
+591	112	14
+592	112	13
+593	113	9
+594	114	10
+595	115	9
+596	116	4
+597	117	4
+598	118	4
+599	119	4
+600	120	4
+601	121	4
+602	121	12
+603	122	12
+604	123	8
+605	123	17
+606	124	7
+607	124	12
+608	125	5
+609	126	6
+610	127	8
+611	128	9
+612	129	4
+613	130	4
+614	130	17
+615	131	4
+616	131	7
+617	132	9
+618	133	9
+619	134	4
+620	135	5
+621	136	6
+622	137	9
+623	138	13
+624	138	4
+625	139	13
+626	139	4
+627	140	13
+628	140	4
+629	141	13
+630	141	4
+631	142	13
+632	142	17
+633	143	9
+634	144	7
+635	144	17
+636	145	5
+637	145	17
+638	146	6
+639	146	17
+640	147	3
+641	148	3
+642	149	3
+643	149	17
+644	150	12
+645	151	12
+\.
+
+
+--
+-- Data for Name: deck; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.deck (id, name, user_id) FROM stdin;
+23	Deck2	1
+25	Mon Deck 2	2
+24	Mon Deck 1	2
+22	Mon super deck 1	1
+27	Nouveau deck	1
+\.
+
+
+--
+-- Data for Name: inventory; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.inventory (id, nom, pv, attaque, defense, attaque_spe, defense_spe, vitesse, numero, level, rank, deck_id, user_id, card_id) FROM stdin;
+27	Sablaireau	138	110	108	47	60	65	28	0	rare	24	2	\N
+28	Nidoran M	135	62	40	36	43	51	32	0	epic	25	2	\N
+29	Nidorino	56	74	53	53	59	61	33	0	common	25	2	\N
+30	Tortank	240	81	92	81	111	81	9	0	epic	\N	1	\N
+26	Chenipan	46	31	36	22	21	43	10	0	common	\N	1	\N
+36	Salameche	123	56	43	65	49	59	4	0	epic	\N	1	\N
+\.
+
+
+--
+-- Data for Name: type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.type (id, name, color) FROM stdin;
+1	Acier	aaaabb
+2	Combat	bb5544
+3	Dragon	7766ee
+4	Eau	3399ff
+5	Ã‰lectrik	ffbb33
+6	Feu	ff4422
+7	Glace	77ddff
+8	Insecte	aabb22
+9	Normal	bbaabb
+10	Plante	77cc55
+11	Poison	aa5599
+12	Psy	ff5599
+13	Roche	bbaa66
+14	Sol	ddbb55
+15	Spectre	6666bb
+16	TÃ©nÃ¨bres	665544
+17	Vol	6699ff
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, name, email, password, role, parties, victories, victory_ratio, cards_owned, cards_bought, cards_level, card_most_played) FROM stdin;
+1	Leomhann	leomhann@gmail.com	$2b$10$0t8J.t19uPKKB8AKeeHQyevGH460Rla7Tgvkh3ITBCA5l33yeKPvO	player	0	0	0	0	0	0	\N
+2	Maéva	maeva@gmail.com	$2b$10$EXz0YhYUDL/Jo3CvaxdZbOz1tv.fYDzpKDQys.9OG8pl9w1hY/oWu	player	0	0	0	0	0	0	\N
+\.
+
+
+--
+-- Name: card_rank_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.card_rank_id_seq', 4, true);
+
+
+--
+-- Name: deck_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.deck_id_seq', 27, true);
+
+
+--
+-- Name: inventory_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.inventory_id_seq', 36, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+
+
+--
+-- Name: card card_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.card
+    ADD CONSTRAINT card_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: card_rank card_rank_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.card_rank
+    ADD CONSTRAINT card_rank_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: deck deck_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deck
+    ADD CONSTRAINT deck_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inventory inventory_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inventory
+    ADD CONSTRAINT inventory_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: card_rank card_rank_card_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.card_rank
+    ADD CONSTRAINT card_rank_card_id_fkey FOREIGN KEY (card_id) REFERENCES public.card(id);
+
+
+--
+-- Name: deck deck_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deck
+    ADD CONSTRAINT deck_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: inventory inventory_card_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inventory
+    ADD CONSTRAINT inventory_card_id_fkey FOREIGN KEY (card_id) REFERENCES public.card(id);
+
+
+--
+-- Name: inventory inventory_deck_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inventory
+    ADD CONSTRAINT inventory_deck_id_fkey FOREIGN KEY (deck_id) REFERENCES public.deck(id);
+
+
+--
+-- Name: inventory inventory_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inventory
+    ADD CONSTRAINT inventory_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

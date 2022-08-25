@@ -1,12 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PokeGame</title>
-</head>
-<body>
-  <h1>GAME !</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>PokeGame</title>
+  </head>
+  <body>
+    <h1>GAME !</h1>
+    <div class="game--board">
+      <aside class="game--infos">GAME INFOS</aside>
+      <div class="game--board__cards">
+        <section class="game--infos__opponent">
+          <div class="opponent--first__row">
+            <article class="game--cards" id="deckCardsPanel">
+              <article class="game--card">
+                <!-- <div class="card__level is-hidden">4</div>
+                <div class="card__rank is-hidden">5</div>
+                <div class="card__deckId is-hidden">4</div> -->
+                <div class="game--card__img">
+                  <img src="/img/4.png" alt="dracofeu" />
+                </div>
+                <div class="game--card__top">
+                  <h3 class="poke__name" id="cardName">Dracofeu</h3>
+                </div>
+                <div class="game--card__middle">
+                  <section class="game--card__stats">
+                    <section class="game--card__types">
+                      <img src="/icons/combat.svg" alt="combat" />
+                      <div class="game--card__tooltip">
+                        <h3>Combat</h3>
+                      </div>
+                      <div class="game--card__stat">
+                        <i class="fa-solid fa-heart"></i>
+                        <h4>45</h4>
+                      </div>
+                      <div class="game--card__stat">
+                        <i class="fa-solid fa-bolt"></i>
+                        <h4>25</h4>
+                      </div>
+                      <div class="game--card__stat">
+                        <i class="fa-solid fa-shield"></i>
+                        <h4>15</h4>
+                      </div>
+                      <div class="game--card__stat">
+                        <i class="fa-solid fa-cloud-bolt"></i>
+                        <h4>25</h4>
+                      </div>
+                      <div class="game--card__stat">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h4>65</h4>
+                      </div>
+                      <div class="game--card__stat">
+                        <i class="fa-solid fa-angles-right"></i>
+                        <h4>35</h4>
+                      </div>
+                    </section>
+                    -->
+                  </section>
+                </div>
+                <h3 class="poke__numero">#4</h3>
+              </article>
+            </article>
+          </div>
+          <div class="opponent--second__row"></div>
+        </section>
+        <section class="game--infos__player">PLAYER BOARD</section>
+      </div>
+    </div>
+  </body>
 </html>

@@ -5,16 +5,146 @@
 
 :root {
   --main-color: #c14040;
-  --secondary-color: #F9844A;
+  --secondary-color: #f9844a;
   --secondary-hover-color: #a4745f;
-  --tertiary-color: #4D908E;
-  --tertiary-hover-color: #4D908E;
+  --tertiary-color: #4d908e;
+  --tertiary-hover-color: #4d908e;
   --fourth-color: #aa3838;
   --fifth-color: #ccc;
   --main-text-color: #fff;
   --main-text-hover-color: #c14040;
   --secondary-text-color: #c14040;
-  --secondary-text-hover-color: #F94144;
+  --secondary-text-hover-color: #f94144;
+}
+
+/****** GAME PAGE ******/
+.game--board {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.game--infos {
+  width: 15%;
+  background-color: red;
+}
+
+.game--board__cards {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 100%;
+}
+
+.game--infos__opponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50%;
+  background-color: blue;
+}
+
+.game--infos__player {
+  height: 50%;
+  background-color: green;
+}
+
+/******* GAME PAGE CARD ********/
+.game--cards {
+  flex-grow: 1;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.game--card {
+  background-color: var(--fourth-color);
+  color: var(--main-text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 150px;
+  height: 180px;
+  padding: 10px;
+  border-radius: 20px;
+  transform: scale(1);
+  perspective: 600px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  transition: all 350ms ease-out;
+  filter: brightness();
+  cursor: pointer;
+}
+
+/* .game--card:hover {
+  z-index: 10;
+  border: 1px solid white;
+  transform: scale(1.1);
+} */
+
+.game--card__img img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  transition: all 250ms ease-in-out;
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
+  z-index: -1;
+}
+
+.game--card__top {
+  display: flex;
+  justify-content: center;
+}
+
+.game--card__middle {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.game--card__types {
+  cursor: pointer;
+  margin-bottom: 5px;
+  height: 30px;
+  width: 30px;
+  border: 1px solid rgba(221, 221, 221, 0);
+  transition: all 150ms ease-in-out;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.game--card__types img {
+  width: 100%;
+}
+
+.game--card__tooltip {
+  display: none;
+  padding: 2px 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  z-index: 2;
+}
+
+.game--card__tooltip h3 {
+  font-size: 1em;
+}
+
+.game--card__stats {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.game--card__stat {
+  display: flex;
+  gap: 10px;
 }
 
 /*******************************************/
@@ -52,14 +182,14 @@ h3 {
   transition: all 150ms ease;
 }
 
-.container--scroll{
+.container--scroll {
   padding: 0;
 }
 
 /*******************************************/
 /****** COLORS ******/
 
-.container{
+.container {
   background-color: var(--main-color);
 }
 
@@ -78,7 +208,7 @@ header a,
   color: var(--secondary-text-color);
 }
 
-.login__container a:hover{
+.login__container a:hover {
   color: var(--main-text-color);
 }
 
@@ -115,47 +245,47 @@ header a,
   background-color: var(--secondary-color);
 }
 
-.cardType-active{
-  background-color: var(--main-color)
+.cardType-active {
+  background-color: var(--main-color);
 }
 
 /****** COLORS-CARD-PAGE ******/
-.poke__infos{
+.poke__infos {
   background-color: var(--fourth-color);
 }
 
 .poke__name__title,
 .poke__details,
 .poke__details i,
-.back__to__main i{
+.back__to__main i {
   color: var(--main-text-color);
 }
 
-.poke__to__deck i{
+.poke__to__deck i {
   background-color: var(--main-color);
 }
 
-.poke__types .tooltip{
+.poke__types .tooltip {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.stat__slider__container{
+.stat__slider__container {
   background-color: var(--main-color);
 }
 
-.stat__slider{
+.stat__slider {
   background-color: var(--main-text-color);
 }
 
 /****** COLORS-DECK ******/
 .deckList,
-.deck__filter{
+.deck__filter {
   background-color: var(--tertiary-color);
   color: var(--main-text-color);
 }
 
 .card,
-.card > a{
+.card > a {
   background-color: var(--fourth-color);
   color: var(--main-text-color);
 }
@@ -174,7 +304,7 @@ header a,
 }
 
 .deckList i,
-.deckList input{
+.deckList input {
   color: var(--main-text-color);
   background-color: transparent;
 }
@@ -186,11 +316,11 @@ header a,
 }
 
 /****** COLORS-DECK-CARDS ******/
-.deck__cards *{
+.deck__cards * {
   color: var(--main-text-color);
 }
 
-.card__top .deleteBtn:hover{
+.card__top .deleteBtn:hover {
   color: var(--secondary-color);
 }
 
@@ -198,15 +328,13 @@ header a,
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.card__deck__list{
-  background-color: rgba(249,	132,	74, 0.4)
+.card__deck__list {
+  background-color: rgba(249, 132, 74, 0.4);
 }
 
-.card__deck__list li:hover{
+.card__deck__list li:hover {
   background-color: var(--secondary-color);
 }
-
-
 
 /****** COLORS-PROFILE ******/
 .profile__avatar img {
@@ -263,7 +391,7 @@ header {
   transition: all 150ms ease;
 }
 
-.header--scroll{
+.header--scroll {
   border-radius: 0;
 }
 
@@ -276,14 +404,14 @@ nav li {
 /*******************************************/
 /****** CARD SHOP ******/
 
-.card__shop__container{
+.card__shop__container {
   display: flex;
   justify-content: space-between;
   margin: 0 30px;
   gap: 20px;
-} 
+}
 
-.filters .deck__filter{
+.filters .deck__filter {
   position: sticky;
   top: 95px;
 }
@@ -566,7 +694,7 @@ nav li {
   font-size: 1.2em;
 }
 
-.deck__card{
+.deck__card {
   position: relative;
   height: 30px;
   width: 80%;
@@ -574,14 +702,14 @@ nav li {
   line-height: 30px;
 }
 
-.deck__card__list{
+.deck__card__list {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.add__deck__icons{
+.add__deck__icons {
   position: absolute;
   top: -15px;
   right: 5px;
@@ -590,21 +718,21 @@ nav li {
   padding: 0;
 }
 
-.add__deck__icons a{
+.add__deck__icons a {
   display: inline;
 }
 
-.add__deck__icons .fa-pen{
+.add__deck__icons .fa-pen {
   font-size: 0.9em;
   cursor: pointer;
 }
 
-.add__deck__icons .fa-xmark{
+.add__deck__icons .fa-xmark {
   font-size: 1.1em;
   cursor: pointer;
 }
 
-.deck__icons{
+.deck__icons {
   position: absolute;
   top: -5px;
   right: 5px;
@@ -645,7 +773,7 @@ nav li {
   padding: 0 10px;
 }
 
-.cardLevel{
+.cardLevel {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -673,7 +801,7 @@ nav li {
 }
 
 .card__rank,
-.card__level{
+.card__level {
   display: none;
 }
 
@@ -735,21 +863,21 @@ nav li {
   filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.7));
 }
 
-.card__top{
+.card__top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.card__top--dummy{
+.card__top--dummy {
   width: 10px;
 }
 
-.card__top .deleteBtn{
+.card__top .deleteBtn {
   z-index: 5;
 }
 
-.card__middle{
+.card__middle {
   flex-grow: 1;
   display: flex;
   justify-content: flex-start;
@@ -832,7 +960,7 @@ nav li {
   display: inline;
 }
 
-.card__deck__list{
+.card__deck__list {
   text-align: center;
   padding: 10px;
   width: 100%;
@@ -1086,7 +1214,7 @@ nav li {
 /*******************************************/
 /******** GLOBAL ********/
 
-.is-hidden{
+.is-hidden {
   display: none;
 }
 
