@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/Benjamin-Boy/poke-fight/issues"
   },
-  "homepage": "https://github.com/Benjamin-Boy/poke-fight#readme",
+  "homepage": "https://benjamin-boy.github.io/poke-fight",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-redis": "^6.1.3",
